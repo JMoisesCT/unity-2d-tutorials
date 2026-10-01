@@ -76,3 +76,7 @@ crashlytics-build.properties
 
 # Herramientas de captura (locales)
 /Tools/
+
+# Notas locales en la raíz (CLAUDE.md, etc.); solo README.md va a GitHub
+/*.md
+!/README.md
