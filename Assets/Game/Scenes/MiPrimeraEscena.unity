@@ -351,6 +351,7 @@ GameObject:
   - component: {fileID: 1130347670}
   - component: {fileID: 1130347669}
   - component: {fileID: 1130347671}
+  - component: {fileID: 1130347672}
   m_Layer: 0
   m_Name: Rana
   m_TagString: Untagged
@@ -444,6 +445,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf39c4b125a30d14681060ebb24e7e85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Saludo
+--- !u!114 &1130347672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1130347668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1005616b7d685f647b448c6a108025e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FichaRana
+  nombre: Rana Ninja
+  vidas: 3
+  velocidad: 2.5
+  estaViva: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
