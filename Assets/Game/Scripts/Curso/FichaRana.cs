@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class FichaRana : MonoBehaviour
 {
@@ -6,6 +7,7 @@ public class FichaRana : MonoBehaviour
     [SerializeField] int vidas = 3;
     [SerializeField] float velocidad = 2.5f;
     [SerializeField] bool estaViva = true;
+    InputAction mover;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -16,11 +18,13 @@ public class FichaRana : MonoBehaviour
         Debug.Log("¿Está viva? " + estaViva);
         vidas = vidas - 1;
         Debug.Log("¡Auch! Le quedan " + vidas + " vidas.");
+        mover = InputSystem.actions.FindAction("Move");
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        Vector2 direccion = mover.ReadValue<Vector2>();
+        transform.Translate(direccion * velocidad * Time.deltaTime);
     }
 }
