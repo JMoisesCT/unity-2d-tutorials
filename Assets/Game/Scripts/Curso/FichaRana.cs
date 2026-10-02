@@ -7,6 +7,7 @@ public class FichaRana : MonoBehaviour
     [SerializeField] int vidas = 3;
     [SerializeField] float velocidad = 2.5f;
     [SerializeField] bool estaViva = true;
+    [SerializeField] float borde = 8f;
     InputAction mover;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -25,6 +26,30 @@ public class FichaRana : MonoBehaviour
     void Update()
     {
         Vector2 direccion = mover.ReadValue<Vector2>();
+
+        if (estaViva == false || vidas <= 0)
+        {
+            direccion = new Vector2(0, 0);
+        }
+
+        if (direccion.x > 0 && transform.position.x > borde)
+        {
+            direccion.x = 0;
+        }
+        if (direccion.x < 0 && transform.position.x < -borde)
+        {
+            direccion.x = 0;
+        }
+
         transform.Translate(direccion * velocidad * Time.deltaTime);
+
+        if (direccion.x < 0)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
+        else if (direccion.x > 0)
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+        }
     }
 }
