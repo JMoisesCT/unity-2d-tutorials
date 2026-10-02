@@ -8,6 +8,7 @@ public class FichaRana : MonoBehaviour
     [SerializeField] float velocidad = 2.5f;
     [SerializeField] bool estaViva = true;
     [SerializeField] float borde = 8f;
+    [SerializeField] int frutas = 0;
     InputAction mover;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -50,6 +51,21 @@ public class FichaRana : MonoBehaviour
         else if (direccion.x > 0)
         {
             transform.localScale = new Vector3(1, 1, 1);
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D otro)
+    {
+        if (otro.CompareTag("Fruta"))
+        {
+            frutas = frutas + 1;
+            Debug.Log("Frutas: " + frutas);
+            Destroy(otro.gameObject);
+        }
+        else if (otro.CompareTag("Trampa"))
+        {
+            vidas = vidas - 1;
+            Debug.Log("¡Auch! Le quedan " + vidas + " vidas.");
         }
     }
 }
