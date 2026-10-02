@@ -9,7 +9,9 @@ public class FichaRana : MonoBehaviour
     [SerializeField] bool estaViva = true;
     [SerializeField] float borde = 8f;
     [SerializeField] int frutas = 0;
+    [SerializeField] Marcador marcador;
     InputAction mover;
+    SpriteRenderer dibujo;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -18,9 +20,9 @@ public class FichaRana : MonoBehaviour
         Debug.Log("Vidas: " + vidas);
         Debug.Log("Velocidad: " + velocidad);
         Debug.Log("¿Está viva? " + estaViva);
-        vidas = vidas - 1;
-        Debug.Log("¡Auch! Le quedan " + vidas + " vidas.");
+        RecibirGolpe(1);
         mover = InputSystem.actions.FindAction("Move");
+        dibujo = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -28,7 +30,7 @@ public class FichaRana : MonoBehaviour
     {
         Vector2 direccion = mover.ReadValue<Vector2>();
 
-        if (estaViva == false || vidas <= 0)
+        if (SigueViva() == false)
         {
             direccion = new Vector2(0, 0);
         }
@@ -46,11 +48,11 @@ public class FichaRana : MonoBehaviour
 
         if (direccion.x < 0)
         {
-            transform.localScale = new Vector3(-1, 1, 1);
+            dibujo.flipX = true;
         }
         else if (direccion.x > 0)
         {
-            transform.localScale = new Vector3(1, 1, 1);
+            dibujo.flipX = false;
         }
     }
 
@@ -58,14 +60,30 @@ public class FichaRana : MonoBehaviour
     {
         if (otro.CompareTag("Fruta"))
         {
-            frutas = frutas + 1;
-            Debug.Log("Frutas: " + frutas);
+            SumarFruta();
             Destroy(otro.gameObject);
         }
         else if (otro.CompareTag("Trampa"))
         {
-            vidas = vidas - 1;
-            Debug.Log("¡Auch! Le quedan " + vidas + " vidas.");
+            RecibirGolpe(1);
         }
+    }
+
+    void SumarFruta()
+    {
+        frutas = frutas + 1;
+        Debug.Log("Frutas: " + frutas);
+        marcador.Mostrar(frutas);
+    }
+
+    void RecibirGolpe(int daño)
+    {
+        vidas = vidas - daño;
+        Debug.Log("¡Auch! Le quedan " + vidas + " vidas.");
+    }
+
+    bool SigueViva()
+    {
+        return estaViva && vidas > 0;
     }
 }
