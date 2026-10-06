@@ -16,6 +16,8 @@ public class MovimientoRana : MonoBehaviour
     bool quiereSaltar;
     bool soltoSalto;
     int saltosHechos;
+    bool enSuelo;
+    AnimacionRana animacion;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -23,6 +25,7 @@ public class MovimientoRana : MonoBehaviour
         mover = InputSystem.actions.FindAction("Move");
         saltar = InputSystem.actions.FindAction("Jump");
         cuerpo = GetComponent<Rigidbody2D>();
+        animacion = GetComponent<AnimacionRana>();
     }
 
     // Update is called once per frame
@@ -42,7 +45,7 @@ public class MovimientoRana : MonoBehaviour
     void FixedUpdate()
     {
         cuerpo.linearVelocity = new Vector2(direccion * velocidad, cuerpo.linearVelocity.y);
-        bool enSuelo = Physics2D.OverlapCircle(pies.position, 0.2f, capaSuelo);
+        enSuelo = Physics2D.OverlapCircle(pies.position, 0.2f, capaSuelo);
         if (enSuelo && cuerpo.linearVelocity.y <= 0)
         {
             saltosHechos = 0;
@@ -51,6 +54,10 @@ public class MovimientoRana : MonoBehaviour
         {
             cuerpo.linearVelocity = new Vector2(cuerpo.linearVelocity.x, fuerzaSalto);
             saltosHechos++;
+            if (saltosHechos > 1)
+            {
+                animacion.DobleSalto();
+            }
         }
         quiereSaltar = false;
         if (soltoSalto && cuerpo.linearVelocity.y > 0)
@@ -58,5 +65,10 @@ public class MovimientoRana : MonoBehaviour
             cuerpo.linearVelocity = new Vector2(cuerpo.linearVelocity.x, cuerpo.linearVelocity.y * 0.5f);
         }
         soltoSalto = false;
+    }
+
+    public bool EstaEnSuelo()
+    {
+        return enSuelo;
     }
 }
