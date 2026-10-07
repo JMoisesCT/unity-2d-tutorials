@@ -8784,6 +8784,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GolpeRana
   fuerzaRetroceso: 6
+  fuerzaRebote: 10
 --- !u!1001 &2142722954
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -4,6 +4,7 @@ using UnityEngine;
 public class GolpeRana : MonoBehaviour
 {
     [SerializeField] float fuerzaRetroceso = 6f;
+    [SerializeField] float fuerzaRebote = 10f;
 
     Rigidbody2D cuerpo;
     Animator animador;
@@ -22,7 +23,17 @@ public class GolpeRana : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D otro)
     {
-        if ((otro.CompareTag("Trampa") || otro.CompareTag("Enemigo")) && golpeada == false)
+        bool cae = cuerpo.linearVelocity.y < 0;
+        bool encima = transform.position.y > otro.transform.position.y;
+        if (otro.CompareTag("Enemigo") && cae && encima)
+        {
+            if (otro.TryGetComponent(out Patrullero enemigo))
+            {
+                enemigo.Pisado();
+                cuerpo.linearVelocity = new Vector2(cuerpo.linearVelocity.x, fuerzaRebote);
+            }
+        }
+        else if ((otro.CompareTag("Trampa") || otro.CompareTag("Enemigo")) && golpeada == false)
         {
             StartCoroutine(Golpe(otro.transform.position.x));
         }

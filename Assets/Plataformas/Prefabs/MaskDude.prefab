@@ -206,3 +206,4 @@ MonoBehaviour:
   capaSuelo:
     serializedVersion: 2
     m_Bits: 8
+  nube: {fileID: 6836216914871040600, guid: 4fd6ada9a92d38b4db4955744c5fa20f, type: 3}
