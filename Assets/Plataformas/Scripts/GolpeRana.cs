@@ -22,7 +22,7 @@ public class GolpeRana : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D otro)
     {
-        if (otro.CompareTag("Trampa") && golpeada == false)
+        if ((otro.CompareTag("Trampa") || otro.CompareTag("Enemigo")) && golpeada == false)
         {
             StartCoroutine(Golpe(otro.transform.position.x));
         }

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Fruta
   - Trampa
+  - Enemigo
   layers:
   - Default
   - TransparentFX
