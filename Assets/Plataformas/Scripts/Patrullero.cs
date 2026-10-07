@@ -1,24 +1,9 @@
-using System.Collections;
 using UnityEngine;
 
-public class Patrullero : MonoBehaviour
+public class Patrullero : Enemigo
 {
     [SerializeField] float velocidad = 2f;
     [SerializeField] LayerMask capaSuelo;
-    [SerializeField] GameObject nube;
-
-    Rigidbody2D cuerpo;
-    SpriteRenderer dibujo;
-    Animator animador;
-    float direccion = 1f;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        cuerpo = GetComponent<Rigidbody2D>();
-        dibujo = GetComponent<SpriteRenderer>();
-        animador = GetComponent<Animator>();
-    }
 
     void FixedUpdate()
     {
@@ -35,28 +20,5 @@ public class Patrullero : MonoBehaviour
             Girar();
         }
         cuerpo.linearVelocity = new Vector2(direccion * velocidad, 0f);
-    }
-
-    void Girar()
-    {
-        direccion = -direccion;
-        dibujo.flipX = direccion < 0;
-    }
-
-    public void Pisado()
-    {
-        StartCoroutine(Morir());
-    }
-
-    IEnumerator Morir()
-    {
-        enabled = false;
-        cuerpo.linearVelocity = Vector2.zero;
-        GetComponent<Collider2D>().enabled = false;
-        animador.SetTrigger("Golpe");
-        yield return new WaitForSeconds(0.35f);
-        GameObject copia = Instantiate(nube, transform.position, Quaternion.identity);
-        Destroy(copia, 0.35f);
-        Destroy(gameObject);
     }
 }

@@ -27,7 +27,7 @@ public class GolpeRana : MonoBehaviour
         bool encima = transform.position.y > otro.transform.position.y;
         if (otro.CompareTag("Enemigo") && cae && encima)
         {
-            if (otro.TryGetComponent(out Patrullero enemigo))
+            if (otro.TryGetComponent(out Enemigo enemigo))
             {
                 enemigo.Pisado();
                 cuerpo.linearVelocity = new Vector2(cuerpo.linearVelocity.x, fuerzaRebote);
