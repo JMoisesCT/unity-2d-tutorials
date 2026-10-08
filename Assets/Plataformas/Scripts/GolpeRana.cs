@@ -5,6 +5,7 @@ public class GolpeRana : MonoBehaviour
 {
     [SerializeField] float fuerzaRetroceso = 6f;
     [SerializeField] float fuerzaRebote = 10f;
+    [SerializeField] HUD hud;
 
     Rigidbody2D cuerpo;
     Animator animador;
@@ -42,6 +43,7 @@ public class GolpeRana : MonoBehaviour
     IEnumerator Golpe(float xTrampa)
     {
         golpeada = true;
+        GameManager.instancia.PerderVida();
         movimiento.enabled = false;
         animador.SetTrigger("Golpe");
         float lado = 1f;
@@ -53,9 +55,16 @@ public class GolpeRana : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         cuerpo.linearVelocity = Vector2.zero;
         yield return new WaitForSeconds(0.5f);
-        transform.position = puntoControl;
-        movimiento.enabled = true;
-        golpeada = false;
+        if (GameManager.instancia.vidas > 0)
+        {
+            transform.position = puntoControl;
+            movimiento.enabled = true;
+            golpeada = false;
+        }
+        else
+        {
+            hud.MostrarGameOver();
+        }
     }
 
     public void GuardarPunto(Vector3 punto)

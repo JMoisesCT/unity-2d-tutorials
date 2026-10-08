@@ -6,6 +6,7 @@ public class Meta : MonoBehaviour
 {
     [SerializeField] Cronometro cronometro;
     [SerializeField] GameObject panelFinal;
+    [SerializeField] string siguienteNivel;
 
     Animator animador;
     bool alcanzada;
@@ -36,7 +37,12 @@ public class Meta : MonoBehaviour
 
     public void Reintentar()
     {
+        GameManager.instancia.Reiniciar();
+    }
+
+    public void SiguienteNivel()
+    {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("Nivel1");
+        SceneManager.LoadScene(siguienteNivel);
     }
 }
