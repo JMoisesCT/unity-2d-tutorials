@@ -5,12 +5,21 @@ public class RockHead : Enemigo
 {
     enum Estado { Esperar, Embestir, Aturdido, Muerto }
 
+    [Header("Movimiento")]
+    [Tooltip("Unidades por segundo al embestir")]
     [SerializeField] float velocidad = 8f;
-    [SerializeField] float distancia = 20f;
+    [Tooltip("Segundos que espera antes de embestir")]
     [SerializeField] float espera = 1f;
+    [Tooltip("Segundos que queda aturdido después de chocar")]
     [SerializeField] float tiempoAturdido = 3f;
+
+    [Header("Detección")]
+    [Tooltip("Hasta dónde ve a la rana con el rayo")]
+    [SerializeField] float distancia = 20f;
     [SerializeField] LayerMask capaRana;
     [SerializeField] LayerMask capaSuelo;
+
+    [Header("Referencias")]
     [SerializeField] TMP_Text textoJefe;
     [SerializeField] GameObject meta;
 

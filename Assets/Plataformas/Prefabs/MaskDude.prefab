@@ -81,8 +81,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 666686532
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7166236263522030466, guid: c9445c372d7d3f040a8d9cfbade84809, type: 3}
@@ -202,8 +202,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 829ef903114038e488b110e40dd7da0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Patrullero
+  nube: {fileID: 6836216914871040600, guid: 4fd6ada9a92d38b4db4955744c5fa20f, type: 3}
   velocidad: 2
   capaSuelo:
     serializedVersion: 2
     m_Bits: 8
-  nube: {fileID: 6836216914871040600, guid: 4fd6ada9a92d38b4db4955744c5fa20f, type: 3}

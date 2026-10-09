@@ -47,5 +47,20 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Terreno
+    uniqueID: 1882705360
+    locked: 0
+  - name: Objetos
+    uniqueID: 1118830721
+    locked: 0
+  - name: Enemigos
+    uniqueID: 666686532
+    locked: 0
+  - name: Jugador
+    uniqueID: 414554292
+    locked: 0
+  - name: Efectos
+    uniqueID: 1366574994
+    locked: 0
   m_RenderingLayers:
   - Default
