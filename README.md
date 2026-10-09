@@ -10,15 +10,16 @@ Cada curso vive en su propia rama, y cada sesión tiene un tag con el estado exa
 |---|---|---|---|
 | C# con Unity (curso base, 8 sesiones) | `main` | `sesion-01` … `sesion-08` | `Assets/Game/` |
 | Plataformas 2D (8 sesiones) | `plataformas-1` | `plataformas-1-sesion-01` … `plataformas-1-sesion-08` | `Assets/Plataformas/` |
+| Plataformas 2D 2: enemigos y un juego completo (6 sesiones) | `plataformas-2` | `plataformas-2-sesion-01` … `plataformas-2-sesion-06` | `Assets/Plataformas/` |
 
-El curso de Plataformas 2D parte del final del curso base (`sesion-08`).
+El curso de Plataformas 2D parte del final del curso base (`sesion-08`), y Plataformas 2D 2 continúa donde termina Plataformas 2D (`plataformas-1-sesion-08`).
 
 ## Cómo usarlo
 
 1. En GitHub, elige el tag de la sesión que quieres (selector de ramas › **Tags**).
 2. Botón **Code › Download ZIP** y descomprímelo.
 3. En Unity Hub, **Add › Add project from disk** y elige la carpeta.
-4. Abre la escena del curso: `Assets/Game/Scenes/` (curso base) o `Assets/Plataformas/Scenes/Nivel1.unity` (Plataformas 2D).
+4. Abre la escena del curso: `Assets/Game/Scenes/` (curso base) o `Assets/Plataformas/Scenes/Nivel1.unity` (Plataformas 2D; en Plataformas 2D 2, desde la sesión 5, `Menu.unity`).
 
 ## Requisitos
 
