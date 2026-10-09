@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class Cronometro : MonoBehaviour
@@ -28,11 +29,12 @@ public class Cronometro : MonoBehaviour
     public void Detener()
     {
         corriendo = false;
-        float record = PlayerPrefs.GetFloat("Record", 9999f);
+        string clave = SceneManager.GetActiveScene().name;
+        float record = PlayerPrefs.GetFloat(clave, 9999f);
         if (tiempo < record)
         {
             record = tiempo;
-            PlayerPrefs.SetFloat("Record", record);
+            PlayerPrefs.SetFloat(clave, record);
         }
         textoFinal.text = "Tiempo: " + tiempo.ToString("F1") + " s";
         textoFinal.text += "\nRécord: " + record.ToString("F1") + " s";
