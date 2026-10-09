@@ -24,7 +24,7 @@ public class Enemigo : MonoBehaviour
         dibujo.flipX = direccion < 0;
     }
 
-    public void Pisado()
+    public virtual void Pisado()
     {
         StartCoroutine(Morir());
     }

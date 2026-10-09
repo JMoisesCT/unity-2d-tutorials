@@ -6,6 +6,7 @@ public class MenuPrincipal : MonoBehaviour
 {
     [SerializeField] TMP_Text textoRecord1;
     [SerializeField] TMP_Text textoRecord2;
+    [SerializeField] TMP_Text textoRecord3;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -16,6 +17,7 @@ public class MenuPrincipal : MonoBehaviour
         }
         MostrarRecord(textoRecord1, "Nivel1");
         MostrarRecord(textoRecord2, "Nivel2");
+        MostrarRecord(textoRecord3, "Nivel3");
     }
 
     void MostrarRecord(TMP_Text texto, string nivel)
