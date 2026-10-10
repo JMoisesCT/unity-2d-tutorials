@@ -5,6 +5,8 @@ public class Corredor : Personaje
     [Header("Rodar")]
     [Tooltip("Cuánta velocidad pierde por segundo rodando")]
     [SerializeField] float friccionRodando = 0.5f;
+    [Tooltip("Cuánta velocidad pierde por segundo con la flecha contraria")]
+    [SerializeField] float frenoRodando = 6f;
     [Tooltip("Grados que gira el dibujo por cada unidad de velocidad")]
     [SerializeField] float giroRodando = 120f;
     [Tooltip("La velocidad con la que sale el spin dash")]
@@ -46,9 +48,15 @@ public class Corredor : Personaje
         }
         else
         {
-            velocidadSuelo = Mathf.MoveTowards(velocidadSuelo, 0f, friccionRodando * Time.deltaTime);
+            float direccion = mover.ReadValue<Vector2>().x;
+            float freno = friccionRodando;
+            if (direccion * velocidadSuelo < 0f)
+            {
+                freno = frenoRodando;
+            }
+            velocidadSuelo = Mathf.MoveTowards(velocidadSuelo, 0f, freno * Time.deltaTime);
 
-            if (velocidadSuelo == 0f)
+            if (Mathf.Abs(velocidadSuelo) < 0.5f)
             {
                 estado = Estado.Suelo;
             }
