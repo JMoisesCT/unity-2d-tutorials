@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 0c99d385497e9484ab7373c225b6e552
+guid: 25e2f4b1b1a0db649929e7ac4c546cc9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2675317404607825922
-    second: alienBlue_stand_0
+      213: 3810435283219779972
+    second: alienBlue_jump_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: alienBlue_stand_0
+      name: alienBlue_jump_0
       rect:
         serializedVersion: 2
-        x: 10
+        x: 9
         y: 0
-        width: 109
-        height: 148
+        width: 110
+        height: 154
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ef73ee4befc5fdad0800000000000000
-      internalID: -2675317404607825922
+      spriteID: 4811ee793b261e430800000000000000
+      internalID: 3810435283219779972
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      alienBlue_stand_0: -2675317404607825922
+      alienBlue_jump_0: 3810435283219779972
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

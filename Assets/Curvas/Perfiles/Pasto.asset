@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Pasto
   m_EditorClassIdentifier: 
   m_Angles:
-  - m_Start: -45
-    m_End: 45
+  - m_Start: -180
+    m_End: 180
     m_Order: 0
     m_Sprites:
     - {fileID: 21300000, guid: 091b54ab6269fa546ac4eea80c0f8117, type: 3}

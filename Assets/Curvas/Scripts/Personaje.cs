@@ -3,6 +3,8 @@ using UnityEngine.InputSystem;
 
 public class Personaje : MonoBehaviour
 {
+    protected enum Estado { Suelo, Aire, Rodando }
+
     [Header("Leer el suelo")]
     [Tooltip("Hasta dónde miran los rayos, desde el centro")]
     [SerializeField] float largoRayo = 1.5f;
@@ -23,14 +25,21 @@ public class Personaje : MonoBehaviour
     [Tooltip("Cuánto empuja la cuesta: acelera en bajada y frena en subida")]
     [SerializeField] float fuerzaPendiente = 20f;
 
+    [Header("Paredes y techos")]
+    [Tooltip("Desde esta inclinación, en grados, cuenta como pared")]
+    [SerializeField] float anguloPared = 80f;
+    [Tooltip("Por debajo de esta velocidad, se cae de paredes y techos")]
+    [SerializeField] float velocidadMinimaPared = 3f;
+
     [Header("Para mirar en Play")]
+    [SerializeField] protected Estado estado;
     [SerializeField] bool enSuelo;
     [SerializeField] float angulo;
-    [SerializeField] float velocidadSuelo;
+    [SerializeField] protected float velocidadSuelo;
 
     Vector2 tangente;
     Rigidbody2D cuerpo;
-    InputAction mover;
+    protected InputAction mover;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -44,23 +53,59 @@ public class Personaje : MonoBehaviour
     {
         LeerSuelo();
 
-        if (enSuelo)
+        switch (estado)
         {
-            AplicarPendiente();
+            case Estado.Suelo:
+                AplicarPendiente();
+                Correr();
+                if (mover.ReadValue<Vector2>().y < 0f)
+                {
+                    FlechaAbajo();
+                }
+                SeguirSuelo();
+                break;
 
-            float direccion = mover.ReadValue<Vector2>().x;
-            float objetivo = direccion * velocidadMaxima;
+            case Estado.Aire:
+                cuerpo.rotation = 0f;
+                if (enSuelo)
+                {
+                    velocidadSuelo = Vector2.Dot(cuerpo.linearVelocity, tangente);
+                    estado = Estado.Suelo;
+                }
+                break;
 
-            if (direccion != 0)
-            {
-                velocidadSuelo = Mathf.MoveTowards(velocidadSuelo, objetivo, aceleracion * Time.deltaTime);
-            }
-            else
-            {
-                velocidadSuelo = Mathf.MoveTowards(velocidadSuelo, 0f, friccion * Time.deltaTime);
-            }
+            case Estado.Rodando:
+                AplicarPendiente();
+                Rodar();
+                SeguirSuelo();
+                break;
+        }
+    }
 
+    void Correr()
+    {
+        float direccion = mover.ReadValue<Vector2>().x;
+        float objetivo = direccion * velocidadMaxima;
+
+        if (direccion != 0)
+        {
+            velocidadSuelo = Mathf.MoveTowards(velocidadSuelo, objetivo, aceleracion * Time.deltaTime);
+        }
+        else
+        {
+            velocidadSuelo = Mathf.MoveTowards(velocidadSuelo, 0f, friccion * Time.deltaTime);
+        }
+    }
+
+    void SeguirSuelo()
+    {
+        if (enSuelo && !SeCaeDeLaPared())
+        {
             cuerpo.linearVelocity = tangente * velocidadSuelo;
+        }
+        else
+        {
+            estado = Estado.Aire;
         }
     }
 
@@ -89,5 +134,18 @@ public class Personaje : MonoBehaviour
     protected virtual void AplicarPendiente()
     {
         velocidadSuelo -= fuerzaPendiente * Mathf.Sin(angulo * Mathf.Deg2Rad) * Time.deltaTime;
+    }
+
+    protected virtual bool SeCaeDeLaPared()
+    {
+        return Mathf.Abs(angulo) > anguloPared && Mathf.Abs(velocidadSuelo) < velocidadMinimaPared;
+    }
+
+    protected virtual void FlechaAbajo()
+    {
+    }
+
+    protected virtual void Rodar()
+    {
     }
 }
