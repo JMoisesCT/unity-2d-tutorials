@@ -475,8 +475,8 @@ GameObject:
   - component: {fileID: 1195475235}
   - component: {fileID: 1195475238}
   - component: {fileID: 1195475237}
-  - component: {fileID: 1195475239}
   - component: {fileID: 1195475240}
+  - component: {fileID: 1195475241}
   m_Layer: 0
   m_Name: Alien
   m_TagString: Untagged
@@ -622,19 +622,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &1195475239
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1195475234}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de4a0e24bfe92d04b90c188d3e20d783, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Empujon
-  velocidadInicial: 5
 --- !u!114 &1195475240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -651,6 +638,26 @@ MonoBehaviour:
   capaSuelo:
     serializedVersion: 2
     m_Bits: 8
+  enSuelo: 0
+  tangente: {x: 0, y: 0}
+  angulo: 0
+--- !u!114 &1195475241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1195475234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c895ab3cddac6b54eb9b4aeb2b3badf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VelocidadSuelo
+  velocidadMaxima: 8
+  aceleracion: 8
+  friccion: 6
+  fuerzaPendiente: 20
+  velocidadSuelo: 0
 --- !u!1 &1484071940
 GameObject:
   m_ObjectHideFlags: 0
