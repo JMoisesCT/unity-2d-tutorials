@@ -38,11 +38,11 @@ public class Personaje : MonoBehaviour
     [SerializeField] protected float velocidadSuelo;
 
     Vector2 tangente;
-    Rigidbody2D cuerpo;
+    protected Rigidbody2D cuerpo;
     protected InputAction mover;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    protected virtual void Start()
     {
         cuerpo = GetComponent<Rigidbody2D>();
         mover = InputSystem.actions.FindAction("Move");
@@ -67,7 +67,8 @@ public class Personaje : MonoBehaviour
 
             case Estado.Aire:
                 cuerpo.rotation = 0f;
-                if (enSuelo)
+                bool bajando = Vector2.Dot(cuerpo.linearVelocity, transform.up) <= 0f;
+                if (enSuelo && bajando)
                 {
                     velocidadSuelo = Vector2.Dot(cuerpo.linearVelocity, tangente);
                     estado = Estado.Suelo;
