@@ -69,7 +69,7 @@ public class Personaje : MonoBehaviour
                 break;
 
             case Estado.Aire:
-                cuerpo.rotation = 0f;
+                cuerpo.MoveRotation(0f);
                 bool bajando = Vector2.Dot(cuerpo.linearVelocity, transform.up) <= 0f;
                 bool tocando = distanciaSuelo <= alturaPies;
                 if (enSuelo && bajando && tocando)
@@ -133,7 +133,7 @@ public class Personaje : MonoBehaviour
             Debug.DrawRay(pieIzq.point, tangente, Color.cyan);
 
             angulo = Vector2.SignedAngle(Vector2.right, tangente);
-            cuerpo.rotation = angulo;
+            cuerpo.MoveRotation(angulo);
         }
     }
 
@@ -153,5 +153,16 @@ public class Personaje : MonoBehaviour
 
     protected virtual void Rodar()
     {
+    }
+
+    public void Lanzar(Vector2 velocidad)
+    {
+        estado = Estado.Aire;
+        cuerpo.linearVelocity = velocidad;
+    }
+
+    public void Impulsar(float velocidad)
+    {
+        velocidadSuelo = velocidad;
     }
 }

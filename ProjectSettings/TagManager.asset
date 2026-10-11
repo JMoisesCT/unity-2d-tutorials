@@ -49,6 +49,9 @@ TagManager:
   - name: Terreno
     uniqueID: 1661287883
     locked: 0
+  - name: Objetos
+    uniqueID: 1486787776
+    locked: 0
   - name: Jugador
     uniqueID: 1159654299
     locked: 0
