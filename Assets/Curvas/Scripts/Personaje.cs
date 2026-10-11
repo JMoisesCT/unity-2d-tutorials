@@ -12,10 +12,12 @@ public class Personaje : MonoBehaviour
     [SerializeField] float separacionPies = 0.3f;
     [Tooltip("Las capas que cuentan como suelo")]
     [SerializeField] LayerMask capaSuelo;
+    [Tooltip("Del centro a los pies: en el aire, aterriza cuando el suelo está así de cerca")]
+    [SerializeField] float alturaPies = 0.5f;
 
     [Header("Correr")]
     [Tooltip("La velocidad más alta que alcanza con las flechas")]
-    [SerializeField] float velocidadMaxima = 8f;
+    [SerializeField] protected float velocidadMaxima = 8f;
     [Tooltip("Cuánta velocidad gana por segundo con una flecha pulsada")]
     [SerializeField] float aceleracion = 8f;
     [Tooltip("Cuánta velocidad pierde por segundo sin flechas")]
@@ -35,6 +37,7 @@ public class Personaje : MonoBehaviour
     [SerializeField] protected Estado estado;
     [SerializeField] bool enSuelo;
     [SerializeField] float angulo;
+    [SerializeField] float distanciaSuelo;
     [SerializeField] protected float velocidadSuelo;
 
     Vector2 tangente;
@@ -68,7 +71,8 @@ public class Personaje : MonoBehaviour
             case Estado.Aire:
                 cuerpo.rotation = 0f;
                 bool bajando = Vector2.Dot(cuerpo.linearVelocity, transform.up) <= 0f;
-                if (enSuelo && bajando)
+                bool tocando = distanciaSuelo <= alturaPies;
+                if (enSuelo && bajando && tocando)
                 {
                     velocidadSuelo = Vector2.Dot(cuerpo.linearVelocity, tangente);
                     estado = Estado.Suelo;
@@ -125,6 +129,7 @@ public class Personaje : MonoBehaviour
         if (enSuelo)
         {
             tangente = (pieDer.point - pieIzq.point).normalized;
+            distanciaSuelo = Mathf.Min(pieIzq.distance, pieDer.distance);
             Debug.DrawRay(pieIzq.point, tangente, Color.cyan);
 
             angulo = Vector2.SignedAngle(Vector2.right, tangente);

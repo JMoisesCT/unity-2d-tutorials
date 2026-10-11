@@ -175,6 +175,7 @@ MonoBehaviour:
   capaSuelo:
     serializedVersion: 2
     m_Bits: 8
+  alturaPies: 0.55
   velocidadMaxima: 2
   aceleracion: 4
   friccion: 6
@@ -184,6 +185,7 @@ MonoBehaviour:
   estado: 0
   enSuelo: 0
   angulo: 0
+  distanciaSuelo: 0
   velocidadSuelo: 0
   fuerzaPegado: 30
   gravedad: 10

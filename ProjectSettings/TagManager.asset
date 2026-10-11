@@ -52,5 +52,8 @@ TagManager:
   - name: Jugador
     uniqueID: 1159654299
     locked: 0
+  - name: Efectos
+    uniqueID: 916980896
+    locked: 0
   m_RenderingLayers:
   - Default
