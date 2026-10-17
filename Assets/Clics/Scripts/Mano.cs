@@ -3,19 +3,35 @@ using UnityEngine.InputSystem;
 
 public class Mano : MonoBehaviour
 {
-    [SerializeField] Transform llave;
+    Arrastrable agarrado;
+    Vector3 desfase;
 
     void Update()
     {
         Vector2 pantalla = Mouse.current.position.ReadValue();
         Vector3 mundo = Camera.main.ScreenToWorldPoint(pantalla);
         mundo.z = 0;
-        llave.position = mundo;
 
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
-            Debug.Log("Píxeles: " + pantalla);
-            Debug.Log("Unidades: " + mundo);
+            Collider2D tocado = Physics2D.OverlapPoint(mundo);
+            if (tocado != null && tocado.TryGetComponent(out agarrado))
+            {
+                Debug.Log("Agarraste: " + agarrado.name);
+                desfase = agarrado.transform.position - mundo;
+                agarrado.Agarrar();
+            }
+        }
+
+        if (agarrado != null && Mouse.current.leftButton.isPressed)
+        {
+            agarrado.transform.position = mundo + desfase;
+        }
+
+        if (agarrado != null && Mouse.current.leftButton.wasReleasedThisFrame)
+        {
+            agarrado.Soltar();
+            agarrado = null;
         }
     }
 }
