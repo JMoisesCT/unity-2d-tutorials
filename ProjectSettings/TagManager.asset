@@ -40,8 +40,17 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Fondo
+    uniqueID: 1369594122
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Terreno
+    uniqueID: 629121280
+    locked: 0
+  - name: Objetos
+    uniqueID: 1670827407
     locked: 0
   m_RenderingLayers:
   - Default
