@@ -175,6 +175,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7533777289787850049, guid: dd80eacc4babb42478cce97617d88753, type: 3}
+      propertyPath: color
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -241,6 +245,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7533777289787850049, guid: dd80eacc4babb42478cce97617d88753, type: 3}
+      propertyPath: color
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -259,6 +267,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 826065722}
     m_Modifications:
+    - target: {fileID: 1646685807655804211, guid: 3c4a514d389b4e8408e55e472720212d, type: 3}
+      propertyPath: color
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1646685807655804211, guid: 3c4a514d389b4e8408e55e472720212d, type: 3}
+      propertyPath: nivel
+      value: 
+      objectReference: {fileID: 1418494866}
     - target: {fileID: 1760889964460533673, guid: 3c4a514d389b4e8408e55e472720212d, type: 3}
       propertyPath: m_Name
       value: CandadoRojo
@@ -962,6 +978,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1073697725}
   - component: {fileID: 1073697726}
+  - component: {fileID: 1073697727}
   m_Layer: 0
   m_Name: Puerta
   m_TagString: Untagged
@@ -1044,6 +1061,21 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &1073697727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1073697724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 281ca5832824112499aebf9da93ced62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Puerta
+  arriba: {fileID: 490050422}
+  abiertaAbajo: {fileID: 21300000, guid: 92b2065d5df7ec74488397961a1128aa, type: 3}
+  abiertaArriba: {fileID: 21300000, guid: 6f602bd2bb5046b4fa5d05ecb7088bcf, type: 3}
 --- !u!1 &1104617809
 GameObject:
   m_ObjectHideFlags: 0
@@ -1107,6 +1139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Nivel
   candados: 3
+  puerta: {fileID: 1073697727}
 --- !u!4 &1418494867
 Transform:
   m_ObjectHideFlags: 0
@@ -3687,6 +3720,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 826065722}
     m_Modifications:
+    - target: {fileID: 1646685807655804211, guid: 3c4a514d389b4e8408e55e472720212d, type: 3}
+      propertyPath: color
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1646685807655804211, guid: 3c4a514d389b4e8408e55e472720212d, type: 3}
+      propertyPath: nivel
+      value: 
+      objectReference: {fileID: 1418494866}
     - target: {fileID: 1760889964460533673, guid: 3c4a514d389b4e8408e55e472720212d, type: 3}
       propertyPath: m_Name
       value: CandadoAmarillo
@@ -3962,6 +4003,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 826065722}
     m_Modifications:
+    - target: {fileID: 1646685807655804211, guid: 3c4a514d389b4e8408e55e472720212d, type: 3}
+      propertyPath: nivel
+      value: 
+      objectReference: {fileID: 1418494866}
     - target: {fileID: 1760889964460533673, guid: 3c4a514d389b4e8408e55e472720212d, type: 3}
       propertyPath: m_Name
       value: CandadoAzul

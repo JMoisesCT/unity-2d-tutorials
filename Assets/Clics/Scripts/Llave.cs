@@ -3,6 +3,7 @@ using UnityEngine;
 public class Llave : MonoBehaviour
 {
     [SerializeField] float radio = 0.5f;
+    [SerializeField] ColorLlave color;
 
     Candado[] candados;
 
@@ -16,9 +17,10 @@ public class Llave : MonoBehaviour
         foreach (Candado candado in candados)
         {
             float distancia = Vector2.Distance(transform.position, candado.transform.position);
-            if (distancia < radio)
+            if (distancia < radio && candado.Acepta(color))
             {
-                transform.position = candado.transform.position;
+                candado.Abrir();
+                gameObject.SetActive(false);
                 return true;
             }
         }
