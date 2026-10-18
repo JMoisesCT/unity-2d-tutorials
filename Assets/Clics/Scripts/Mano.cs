@@ -3,14 +3,27 @@ using UnityEngine.InputSystem;
 
 public class Mano : MonoBehaviour
 {
+    [SerializeField] float alturaMaxima = 0.5f;
+
     Arrastrable agarrado;
     Vector3 desfase;
+    Vector3 anterior;
+    Vector3 velocidad;
+    float tiempo;
 
     void Update()
     {
         Vector2 pantalla = Mouse.current.position.ReadValue();
         Vector3 mundo = Camera.main.ScreenToWorldPoint(pantalla);
         mundo.z = 0;
+
+        tiempo += Time.deltaTime;
+        if (tiempo >= 0.05f)
+        {
+            velocidad = (mundo - anterior) / tiempo;
+            anterior = mundo;
+            tiempo = 0;
+        }
 
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
@@ -25,20 +38,14 @@ public class Mano : MonoBehaviour
 
         if (agarrado != null && Mouse.current.leftButton.isPressed)
         {
-            agarrado.transform.position = mundo + desfase;
+            Vector3 destino = mundo + desfase;
+            destino.y = Mathf.Min(destino.y, alturaMaxima);
+            agarrado.Mover(destino);
         }
 
         if (agarrado != null && Mouse.current.leftButton.wasReleasedThisFrame)
         {
-            agarrado.Soltar();
-            if (agarrado.TryGetComponent(out Llave llave))
-            {
-                bool encajada = llave.Encajar();
-                if (encajada == false)
-                {
-                    agarrado.Volver();
-                }
-            }
+            agarrado.Soltar(velocidad);
             agarrado = null;
         }
     }

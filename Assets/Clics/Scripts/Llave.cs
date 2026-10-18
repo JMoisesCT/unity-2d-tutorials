@@ -6,13 +6,23 @@ public class Llave : MonoBehaviour
     [SerializeField] ColorLlave color;
 
     Candado[] candados;
+    Arrastrable arrastrable;
 
     void Start()
     {
         candados = FindObjectsByType<Candado>(FindObjectsSortMode.None);
+        arrastrable = GetComponent<Arrastrable>();
     }
 
-    public bool Encajar()
+    void FixedUpdate()
+    {
+        if (arrastrable.EstaAgarrado() == false)
+        {
+            Encajar();
+        }
+    }
+
+    void Encajar()
     {
         foreach (Candado candado in candados)
         {
@@ -21,9 +31,11 @@ public class Llave : MonoBehaviour
             {
                 candado.Abrir();
                 gameObject.SetActive(false);
-                return true;
+            }
+            else if (distancia < radio)
+            {
+                arrastrable.Volver();
             }
         }
-        return false;
     }
 }
