@@ -11,6 +11,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Game/Scenes/MiPrimeraEscena.unity
     guid: bb70f08e5ebef7f46b72703fca815510
+  - enabled: 1
+    path: Assets/Clics/Scenes/Nivel1.unity
+    guid: 88a52c1b7c8a77345b20703b14b3b517
+  - enabled: 1
+    path: Assets/Clics/Scenes/Nivel2.unity
+    guid: bbd29454c3bd0054ab1abc5e5eff834a
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

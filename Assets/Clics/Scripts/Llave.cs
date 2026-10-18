@@ -26,6 +26,11 @@ public class Llave : MonoBehaviour
     {
         foreach (Candado candado in candados)
         {
+            if (candado.gameObject.activeSelf == false)
+            {
+                continue;
+            }
+
             float distancia = Vector2.Distance(transform.position, candado.transform.position);
             if (distancia < radio && candado.Acepta(color))
             {

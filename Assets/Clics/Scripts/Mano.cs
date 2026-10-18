@@ -34,6 +34,10 @@ public class Mano : MonoBehaviour
                 desfase = agarrado.transform.position - mundo;
                 agarrado.Agarrar();
             }
+            else if (tocado != null && tocado.TryGetComponent(out Puerta puerta))
+            {
+                puerta.Entrar();
+            }
         }
 
         if (agarrado != null && Mouse.current.leftButton.isPressed)

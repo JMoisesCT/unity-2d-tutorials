@@ -4,5 +4,6 @@ public enum ColorLlave
 {
     Azul,
     Rojo,
-    Amarillo
+    Amarillo,
+    Verde
 }

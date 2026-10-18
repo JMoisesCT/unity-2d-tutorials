@@ -2,11 +2,12 @@ using UnityEngine;
 
 public class Nivel : MonoBehaviour
 {
-    [SerializeField] int candados = 3;
+    int candados;
     [SerializeField] Puerta puerta;
 
     void Start()
     {
+        candados = FindObjectsByType<Candado>(FindObjectsSortMode.None).Length;
         Debug.Log("Abre los " + candados + " candados para salir.");
     }
 
