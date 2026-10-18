@@ -6,6 +6,7 @@ public class Arrastrable : MonoBehaviour
 
     SpriteRenderer dibujo;
     int ordenNormal;
+    Vector3 inicio;
 
     void Start()
     {
@@ -15,11 +16,17 @@ public class Arrastrable : MonoBehaviour
 
     public void Agarrar()
     {
+        inicio = transform.position;
         dibujo.sortingOrder = ordenAgarrado;
     }
 
     public void Soltar()
     {
         dibujo.sortingOrder = ordenNormal;
+    }
+
+    public void Volver()
+    {
+        transform.position = inicio;
     }
 }

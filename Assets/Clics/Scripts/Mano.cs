@@ -31,6 +31,14 @@ public class Mano : MonoBehaviour
         if (agarrado != null && Mouse.current.leftButton.wasReleasedThisFrame)
         {
             agarrado.Soltar();
+            if (agarrado.TryGetComponent(out Llave llave))
+            {
+                bool encajada = llave.Encajar();
+                if (encajada == false)
+                {
+                    agarrado.Volver();
+                }
+            }
             agarrado = null;
         }
     }
