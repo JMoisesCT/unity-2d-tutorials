@@ -16,7 +16,7 @@ public class Llave : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (arrastrable.EstaAgarrado() == false)
+        if (arrastrable.EstaAgarrado() == false && arrastrable.EstaVolviendo() == false)
         {
             Encajar();
         }

@@ -6,6 +6,7 @@ public class Mano : MonoBehaviour
     [SerializeField] float alturaMaxima = 0.5f;
 
     Arrastrable agarrado;
+    Arrastrable encima;
     Vector3 desfase;
     Vector3 anterior;
     Vector3 velocidad;
@@ -25,9 +26,20 @@ public class Mano : MonoBehaviour
             tiempo = 0;
         }
 
+        Collider2D tocado = Physics2D.OverlapPoint(mundo);
+
+        if (encima != null)
+        {
+            encima.Resaltar(false);
+        }
+        encima = null;
+        if (agarrado == null && tocado != null && tocado.TryGetComponent(out encima))
+        {
+            encima.Resaltar(true);
+        }
+
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
-            Collider2D tocado = Physics2D.OverlapPoint(mundo);
             if (tocado != null && tocado.TryGetComponent(out agarrado))
             {
                 Debug.Log("Agarraste: " + agarrado.name);

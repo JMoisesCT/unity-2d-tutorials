@@ -104,3 +104,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f09b2db4f4f6f54f8f9991431c11144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Candado
+  color: 0
+  nivel: {fileID: 0}
+  estrellas: {fileID: 625194871983106018, guid: f7b72098270a95342a24e23f24137575, type: 3}
+  colores:
+  - {r: 0.23921569, g: 0.7058824, b: 0.9490196, a: 1}
+  - {r: 0.9490196, g: 0.3764706, b: 0.23921569, a: 1}
+  - {r: 1, g: 0.8235294, b: 0.12156863, a: 1}
+  - {r: 0.48235294, g: 0.8235294, b: 0.23529412, a: 1}
