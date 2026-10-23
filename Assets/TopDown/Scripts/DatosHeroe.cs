@@ -17,6 +17,8 @@ public class DatosHeroe : ScriptableObject
     public float alcance = 0.8f;
     [Tooltip("Segundos entre un golpe y el siguiente")]
     public float cadencia = 0.4f;
+    [Tooltip("El prefab del arma: Espada, Arco o Baston")]
+    public Ataque arma;
 
     [Header("Dibujo")]
     [Tooltip("Las animaciones del héroe: un Animator Controller o un Override")]

@@ -18,4 +18,5 @@ MonoBehaviour:
   "da\xF1o": 1
   alcance: 0.8
   cadencia: 0.4
+  arma: {fileID: 3368183070662525116, guid: 9a0c9b22cac9d4648a625b332ba223f7, type: 3}
   animaciones: {fileID: 9100000, guid: 50bc6f3bb7c80514aaf7d70108b664ee, type: 2}

@@ -8,12 +8,8 @@ public class Heroe : MonoBehaviour
     [SerializeField] DatosHeroe datos;
 
     [Header("Ataque")]
-    [Tooltip("Se voltea con el héroe: lleva la espada")]
+    [Tooltip("Se voltea con el héroe: ahí aparece el arma")]
     [SerializeField] Transform mano;
-    [Tooltip("El Animator de la espada")]
-    [SerializeField] Animator espada;
-    [Tooltip("Centro del círculo del golpe")]
-    [SerializeField] Transform puntoGolpe;
 
     InputAction mover;
     InputAction atacar;
@@ -22,6 +18,7 @@ public class Heroe : MonoBehaviour
     SpriteRenderer dibujo;
     Animator animador;
     float siguienteGolpe;
+    Ataque arma;
 
     void Start()
     {
@@ -33,6 +30,7 @@ public class Heroe : MonoBehaviour
         animador = GetComponent<Animator>();
         animador.runtimeAnimatorController = datos.animaciones;
         GetComponent<Vida>().Empezar(datos.vida);
+        Equipar();
     }
 
     void Update()
@@ -70,25 +68,21 @@ public class Heroe : MonoBehaviour
         datos = nueva;
         animador.runtimeAnimatorController = datos.animaciones;
         GetComponent<Vida>().CambiarMaxima(datos.vida);
+        Equipar();
+    }
+
+    void Equipar()
+    {
+        if (arma != null)
+        {
+            Destroy(arma.gameObject);
+        }
+        arma = Instantiate(datos.arma, mano);
     }
 
     void Atacar()
     {
         siguienteGolpe = Time.time + datos.cadencia;
-        espada.SetTrigger("Atacar");
-
-        Collider2D[] tocados = Physics2D.OverlapCircleAll(puntoGolpe.position, datos.alcance);
-        foreach (Collider2D tocado in tocados)
-        {
-            if (tocado.gameObject != gameObject && tocado.TryGetComponent(out Vida vida))
-            {
-                vida.RecibirDaño(datos.daño);
-            }
-        }
-    }
-
-    void OnDrawGizmosSelected()
-    {
-        Gizmos.DrawWireSphere(puntoGolpe.position, datos.alcance);
+        arma.Atacar(datos);
     }
 }
