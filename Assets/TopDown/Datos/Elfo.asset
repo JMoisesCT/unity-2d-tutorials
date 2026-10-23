@@ -18,3 +18,4 @@ MonoBehaviour:
   "da\xF1o": 1
   alcance: 0.6
   cadencia: 0.25
+  animaciones: {fileID: 22100000, guid: 0eeff122cd8fe254487365fb98958751, type: 2}

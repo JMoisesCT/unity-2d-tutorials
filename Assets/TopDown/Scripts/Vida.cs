@@ -19,6 +19,14 @@ public class Vida : MonoBehaviour
         AvisarHud();
     }
 
+    public void CambiarMaxima(int maxima)
+    {
+        vida = Mathf.CeilToInt((float)vida / vidaMaxima * maxima);
+        vidaMaxima = maxima;
+        Debug.Log(name + " ahora tiene " + vida + " de " + maxima);
+        AvisarHud();
+    }
+
     public void RecibirDaño(int daño)
     {
         if (protegido)

@@ -49,6 +49,9 @@ TagManager:
   - name: Terreno
     uniqueID: 866910816
     locked: 0
+  - name: Objetos
+    uniqueID: 1636217324
+    locked: 0
   - name: Enemigos
     uniqueID: 1118138726
     locked: 0

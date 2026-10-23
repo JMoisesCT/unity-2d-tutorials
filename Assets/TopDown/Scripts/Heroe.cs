@@ -31,6 +31,7 @@ public class Heroe : MonoBehaviour
         cuerpo = GetComponent<Rigidbody2D>();
         dibujo = GetComponent<SpriteRenderer>();
         animador = GetComponent<Animator>();
+        animador.runtimeAnimatorController = datos.animaciones;
         GetComponent<Vida>().Empezar(datos.vida);
     }
 
@@ -61,6 +62,14 @@ public class Heroe : MonoBehaviour
     void FixedUpdate()
     {
         cuerpo.linearVelocity = direccion * datos.velocidad;
+    }
+
+    public void Transformar(DatosHeroe nueva)
+    {
+        Debug.Log(name + " se transforma en " + nueva.nombre);
+        datos = nueva;
+        animador.runtimeAnimatorController = datos.animaciones;
+        GetComponent<Vida>().CambiarMaxima(datos.vida);
     }
 
     void Atacar()
