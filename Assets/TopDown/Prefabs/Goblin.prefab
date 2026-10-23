@@ -177,6 +177,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Vida
   vida: 3
+  invulnerable: 0
+  hud: {fileID: 0}
 --- !u!50 &1427246919248367395
 Rigidbody2D:
   serializedVersion: 5
@@ -218,3 +220,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Perseguidor
   objetivo: {fileID: 0}
   velocidad: 2
+  vision: 2.5
+  "da\xF1o": 1

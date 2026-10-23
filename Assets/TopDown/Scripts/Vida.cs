@@ -10,6 +10,14 @@ public class Vida : MonoBehaviour
     [SerializeField] Corazones hud;
 
     bool protegido;
+    int vidaMaxima;
+
+    public void Empezar(int maxima)
+    {
+        vidaMaxima = maxima;
+        vida = maxima;
+        AvisarHud();
+    }
 
     public void RecibirDaño(int daño)
     {
@@ -20,11 +28,7 @@ public class Vida : MonoBehaviour
 
         vida = vida - daño;
         Debug.Log(name + " recibe " + daño + " de daño. Le quedan " + vida);
-
-        if (hud != null)
-        {
-            hud.Mostrar(vida);
-        }
+        AvisarHud();
 
         if (vida <= 0)
         {
@@ -33,6 +37,14 @@ public class Vida : MonoBehaviour
         else
         {
             StartCoroutine(Proteger());
+        }
+    }
+
+    void AvisarHud()
+    {
+        if (hud != null)
+        {
+            hud.Mostrar(vida, vidaMaxima);
         }
     }
 

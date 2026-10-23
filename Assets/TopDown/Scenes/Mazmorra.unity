@@ -3763,13 +3763,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbaf0aa0153e1e2438725f317b14dbf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Heroe
-  nombre: Caballero
-  velocidad: 4.5
+  datos: {fileID: 11400000, guid: b38f1463c9b3d974ab7eb765e7ed89a4, type: 2}
   mano: {fileID: 1779310999}
   espada: {fileID: 1713380118}
   puntoGolpe: {fileID: 1572314892}
-  alcance: 0.8
-  "da\xF1o": 1
 --- !u!61 &1562660237
 BoxCollider2D:
   m_ObjectHideFlags: 0

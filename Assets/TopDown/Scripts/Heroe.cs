@@ -4,8 +4,8 @@ using UnityEngine.InputSystem;
 public class Heroe : MonoBehaviour
 {
     [Header("Ficha")]
-    [SerializeField] string nombre = "Caballero";
-    [SerializeField] float velocidad = 4.5f;
+    [Tooltip("Los números del héroe: un asset de DatosHeroe")]
+    [SerializeField] DatosHeroe datos;
 
     [Header("Ataque")]
     [Tooltip("Se voltea con el héroe: lleva la espada")]
@@ -14,10 +14,6 @@ public class Heroe : MonoBehaviour
     [SerializeField] Animator espada;
     [Tooltip("Centro del círculo del golpe")]
     [SerializeField] Transform puntoGolpe;
-    [Tooltip("Radio del círculo del golpe")]
-    [SerializeField] float alcance = 0.6f;
-    [Tooltip("Vida que quita cada golpe")]
-    [SerializeField] int daño = 1;
 
     InputAction mover;
     InputAction atacar;
@@ -25,15 +21,17 @@ public class Heroe : MonoBehaviour
     Vector2 direccion;
     SpriteRenderer dibujo;
     Animator animador;
+    float siguienteGolpe;
 
     void Start()
     {
-        Debug.Log(nombre + " entra en la mazmorra. Velocidad: " + velocidad);
+        Debug.Log(datos.nombre + " entra en la mazmorra. Velocidad: " + datos.velocidad);
         mover = InputSystem.actions.FindAction("Move");
         atacar = InputSystem.actions.FindAction("Attack");
         cuerpo = GetComponent<Rigidbody2D>();
         dibujo = GetComponent<SpriteRenderer>();
         animador = GetComponent<Animator>();
+        GetComponent<Vida>().Empezar(datos.vida);
     }
 
     void Update()
@@ -54,7 +52,7 @@ public class Heroe : MonoBehaviour
         bool seMueve = direccion.x != 0 || direccion.y != 0;
         animador.SetBool("Corriendo", seMueve);
 
-        if (atacar.WasPressedThisFrame())
+        if (atacar.WasPressedThisFrame() && Time.time >= siguienteGolpe)
         {
             Atacar();
         }
@@ -62,25 +60,26 @@ public class Heroe : MonoBehaviour
 
     void FixedUpdate()
     {
-        cuerpo.linearVelocity = direccion * velocidad;
+        cuerpo.linearVelocity = direccion * datos.velocidad;
     }
 
     void Atacar()
     {
+        siguienteGolpe = Time.time + datos.cadencia;
         espada.SetTrigger("Atacar");
 
-        Collider2D[] tocados = Physics2D.OverlapCircleAll(puntoGolpe.position, alcance);
+        Collider2D[] tocados = Physics2D.OverlapCircleAll(puntoGolpe.position, datos.alcance);
         foreach (Collider2D tocado in tocados)
         {
             if (tocado.gameObject != gameObject && tocado.TryGetComponent(out Vida vida))
             {
-                vida.RecibirDaño(daño);
+                vida.RecibirDaño(datos.daño);
             }
         }
     }
 
     void OnDrawGizmosSelected()
     {
-        Gizmos.DrawWireSphere(puntoGolpe.position, alcance);
+        Gizmos.DrawWireSphere(puntoGolpe.position, datos.alcance);
     }
 }

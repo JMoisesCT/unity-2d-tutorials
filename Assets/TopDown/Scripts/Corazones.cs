@@ -12,10 +12,12 @@ public class Corazones : MonoBehaviour
     [SerializeField] Sprite medio;
     [SerializeField] Sprite vacio;
 
-    public void Mostrar(int vida)
+    public void Mostrar(int vida, int maxima)
     {
         for (int i = 0; i < corazones.Length; i++)
         {
+            corazones[i].enabled = i * 2 < maxima;
+
             if (vida >= i * 2 + 2)
             {
                 corazones[i].sprite = lleno;
