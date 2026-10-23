@@ -495,6 +495,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Goblin (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7958929181838936006, guid: 5e02355b7caf01d41bcd400faa832765, type: 3}
+      propertyPath: objetivo
+      value: 
+      objectReference: {fileID: 1562660235}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3563,6 +3567,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Vida
   vida: 6
+  invulnerable: 1
 --- !u!1 &1572314891
 GameObject:
   m_ObjectHideFlags: 0
@@ -3839,6 +3844,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Goblin
       objectReference: {fileID: 0}
+    - target: {fileID: 5895202799996310156, guid: 5e02355b7caf01d41bcd400faa832765, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: afdaed3778b245b43a58221f06003d97, type: 3}
+    - target: {fileID: 7958929181838936006, guid: 5e02355b7caf01d41bcd400faa832765, type: 3}
+      propertyPath: objetivo
+      value: 
+      objectReference: {fileID: 1562660235}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 8212169107047600509}
   - component: {fileID: 6043403180763331753}
   - component: {fileID: 4993090098206802741}
+  - component: {fileID: 1427246919248367395}
+  - component: {fileID: 7958929181838936006}
   m_Layer: 0
   m_Name: Goblin
   m_TagString: Untagged
@@ -175,3 +177,44 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Vida
   vida: 3
+--- !u!50 &1427246919248367395
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4486614443549017645}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 1
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!114 &7958929181838936006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4486614443549017645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86d0a08228217064dabf08eda1eda8d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Perseguidor
+  objetivo: {fileID: 0}
+  velocidad: 2
