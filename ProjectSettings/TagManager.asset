@@ -40,8 +40,20 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Fondo
+    uniqueID: 312349802
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Calle
+    uniqueID: 1671188395
+    locked: 0
+  - name: Personajes
+    uniqueID: 171904661
+    locked: 0
+  - name: Frente
+    uniqueID: 697344094
     locked: 0
   m_RenderingLayers:
   - Default
