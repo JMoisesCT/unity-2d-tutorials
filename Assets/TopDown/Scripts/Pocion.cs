@@ -10,6 +10,7 @@ public class Pocion : MonoBehaviour
         if (otro.TryGetComponent(out Heroe heroe))
         {
             heroe.Transformar(ficha);
+            Destroy(gameObject);
         }
     }
 }

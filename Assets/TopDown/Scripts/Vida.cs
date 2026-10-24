@@ -40,6 +40,15 @@ public class Vida : MonoBehaviour
 
         if (vida <= 0)
         {
+            Sala sala = FindAnyObjectByType<Sala>();
+            if (TryGetComponent(out Perseguidor enemigo))
+            {
+                sala.EnemigoVencido();
+            }
+            else
+            {
+                sala.HeroeVencido();
+            }
             Destroy(gameObject);
         }
         else

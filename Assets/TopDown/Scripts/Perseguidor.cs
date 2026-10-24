@@ -3,8 +3,6 @@ using UnityEngine;
 public class Perseguidor : MonoBehaviour
 {
     [Header("Persecución")]
-    [Tooltip("A quién persigue: el héroe")]
-    [SerializeField] Transform objetivo;
     [Tooltip("Unidades por segundo")]
     [SerializeField] float velocidad = 2f;
     [Tooltip("Distancia a la que ve al héroe")]
@@ -14,6 +12,7 @@ public class Perseguidor : MonoBehaviour
     [Tooltip("Vida que quita al tocar")]
     [SerializeField] int daño = 1;
 
+    Transform objetivo;
     Rigidbody2D cuerpo;
     SpriteRenderer dibujo;
     Animator animador;
@@ -23,6 +22,7 @@ public class Perseguidor : MonoBehaviour
         cuerpo = GetComponent<Rigidbody2D>();
         dibujo = GetComponent<SpriteRenderer>();
         animador = GetComponent<Animator>();
+        objetivo = FindAnyObjectByType<Heroe>().transform;
     }
 
     void FixedUpdate()
