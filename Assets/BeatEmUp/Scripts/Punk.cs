@@ -14,10 +14,15 @@ public class Punk : MonoBehaviour
     [Tooltip("Unidades por segundo hacia el fondo o hacia el frente")]
     [SerializeField] float velocidadProfundidad = 1.5f;
 
+    [Header("Golpes")]
+    [Tooltip("Cuánta velocidad de empujón pierde cada segundo")]
+    [SerializeField] float freno = 15f;
+
     Rigidbody2D cuerpo;
     float lado;
     SpriteRenderer dibujo;
     Animator animador;
+    float empuje;
 
     void Start()
     {
@@ -34,6 +39,14 @@ public class Punk : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (empuje != 0)
+        {
+            Vector2 atras = cuerpo.position + new Vector2(empuje * Time.deltaTime, 0);
+            empuje = Mathf.MoveTowards(empuje, 0, freno * Time.deltaTime);
+            cuerpo.MovePosition(atras);
+            return;
+        }
+
         Vector2 destino = new Vector2(objetivo.position.x + lado * distancia, objetivo.position.y);
 
         Vector2 siguiente = cuerpo.position;
@@ -45,5 +58,11 @@ public class Punk : MonoBehaviour
         dibujo.flipX = objetivo.position.x > cuerpo.position.x;
 
         cuerpo.MovePosition(siguiente);
+    }
+
+    public void Recibir(float fuerza, float hacia)
+    {
+        empuje = fuerza * hacia;
+        animador.SetTrigger("Herido");
     }
 }
