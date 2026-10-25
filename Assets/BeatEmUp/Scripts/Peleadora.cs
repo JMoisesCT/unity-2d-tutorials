@@ -28,6 +28,7 @@ public class Peleadora : MonoBehaviour
     Rigidbody2D cuerpo;
     Vector2 direccion;
     Salto salto;
+    Combo combo;
 
     void Start()
     {
@@ -35,6 +36,7 @@ public class Peleadora : MonoBehaviour
         mover = InputSystem.actions.FindAction("Move");
         cuerpo = GetComponent<Rigidbody2D>();
         salto = GetComponent<Salto>();
+        combo = GetComponent<Combo>();
     }
 
     void Update()
@@ -43,6 +45,11 @@ public class Peleadora : MonoBehaviour
         if (salto.EnElAire())
         {
             direccion.y = 0;
+        }
+
+        if (combo.Golpeando())
+        {
+            direccion = Vector2.zero;
         }
 
         if (direccion.x < 0)
