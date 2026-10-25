@@ -18,24 +18,32 @@ public class Peleadora : MonoBehaviour
     [SerializeField] float arriba = 0.5f;
     [SerializeField] float abajo = -6.5f;
 
+    [Header("Dibujo")]
+    [Tooltip("El Sprite Renderer del hijo Cuerpo")]
+    [SerializeField] SpriteRenderer dibujo;
+    [Tooltip("El Animator del hijo Cuerpo")]
+    [SerializeField] Animator animador;
+
     InputAction mover;
     Rigidbody2D cuerpo;
     Vector2 direccion;
-    SpriteRenderer dibujo;
-    Animator animador;
+    Salto salto;
 
     void Start()
     {
         Debug.Log(nombre + " llega a la calle. Velocidad: " + velocidad);
         mover = InputSystem.actions.FindAction("Move");
         cuerpo = GetComponent<Rigidbody2D>();
-        dibujo = GetComponent<SpriteRenderer>();
-        animador = GetComponent<Animator>();
+        salto = GetComponent<Salto>();
     }
 
     void Update()
     {
         direccion = mover.ReadValue<Vector2>();
+        if (salto.EnElAire())
+        {
+            direccion.y = 0;
+        }
 
         if (direccion.x < 0)
         {
@@ -48,6 +56,7 @@ public class Peleadora : MonoBehaviour
 
         bool camina = direccion.x != 0 || direccion.y != 0;
         animador.SetBool("Caminando", camina);
+        animador.SetBool("EnElAire", salto.EnElAire());
     }
 
     void FixedUpdate()
