@@ -98,7 +98,8 @@ public class Peleadora : MonoBehaviour
         }
         Vector2 siguiente = cuerpo.position + avance;
         float borde = Mathf.Max(izquierda, camara.BordeIzquierdo());
-        siguiente.x = Mathf.Clamp(siguiente.x, borde, derecha);
+        float tope = Mathf.Min(derecha, camara.BordeDerecho());
+        siguiente.x = Mathf.Clamp(siguiente.x, borde, tope);
         siguiente.y = Mathf.Clamp(siguiente.y, abajo, arriba);
         cuerpo.MovePosition(siguiente);
     }

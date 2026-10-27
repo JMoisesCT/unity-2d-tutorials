@@ -62,6 +62,11 @@ public class Punk : MonoBehaviour, IGolpeable
         }
     }
 
+    public void Perseguir(Transform peleadora)
+    {
+        objetivo = peleadora;
+    }
+
     void FixedUpdate()
     {
         switch (estado)
