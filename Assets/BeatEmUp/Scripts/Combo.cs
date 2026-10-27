@@ -111,10 +111,10 @@ public class Combo : MonoBehaviour
         Collider2D[] tocados = Physics2D.OverlapBoxAll(centro, tamaño, 0);
         foreach (Collider2D tocado in tocados)
         {
-            Punk punk = tocado.GetComponent<Punk>();
-            if (punk != null && Mathf.Abs(punk.transform.position.y - transform.position.y) < carril)
+            IGolpeable golpeable = tocado.GetComponent<IGolpeable>();
+            if (golpeable != null && Mathf.Abs(tocado.transform.position.y - transform.position.y) < carril)
             {
-                Debug.Log("Le pega a " + punk.name);
+                Debug.Log("Le pega a " + tocado.name);
                 float fuerza = empujon;
                 int quita = daño;
                 if (pateando)
@@ -127,7 +127,7 @@ public class Combo : MonoBehaviour
                     fuerza = empujonFuerte;
                     quita = dañoFuerte;
                 }
-                punk.Recibir(fuerza, Lado(), quita);
+                golpeable.Recibir(fuerza, Lado(), quita);
             }
         }
     }

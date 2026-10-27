@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Punk : MonoBehaviour
+public class Punk : MonoBehaviour, IGolpeable
 {
     enum Estado { Acercarse, Atacar, Herido, Caido }
 
