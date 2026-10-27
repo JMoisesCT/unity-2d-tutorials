@@ -32,7 +32,10 @@ public class Barril : MonoBehaviour, IGolpeable
     IEnumerator Romperse()
     {
         Debug.Log(name + " se rompe");
-        GetComponent<Collider2D>().enabled = false;
+        foreach (Collider2D caja in GetComponents<Collider2D>())
+        {
+            caja.enabled = false;
+        }
         dibujo.sprite = aplastado;
         yield return new WaitForSeconds(tendido);
 

@@ -20,6 +20,10 @@ public class Peleadora : MonoBehaviour
     [SerializeField] float arriba = 0.5f;
     [SerializeField] float abajo = -6.5f;
 
+    [Header("Obstáculos")]
+    [Tooltip("Con qué choca: con Use Triggers apagado, los triggers no la frenan")]
+    [SerializeField] ContactFilter2D filtro;
+
     [Header("Dibujo")]
     [Tooltip("El Sprite Renderer del hijo Cuerpo")]
     [SerializeField] SpriteRenderer dibujo;
@@ -39,6 +43,7 @@ public class Peleadora : MonoBehaviour
     Combo combo;
     Vida vida;
     float quietaHasta;
+    RaycastHit2D[] choques = new RaycastHit2D[4];
 
     void Start()
     {
@@ -80,10 +85,24 @@ public class Peleadora : MonoBehaviour
     void FixedUpdate()
     {
         Vector2 paso = new Vector2(direccion.x * velocidad, direccion.y * velocidadProfundidad);
-        Vector2 siguiente = cuerpo.position + paso * Time.deltaTime;
+        Vector2 avance = paso * Time.deltaTime;
+        if (Choca(new Vector2(avance.x, 0)))
+        {
+            avance.x = 0;
+        }
+        if (Choca(new Vector2(0, avance.y)))
+        {
+            avance.y = 0;
+        }
+        Vector2 siguiente = cuerpo.position + avance;
         siguiente.x = Mathf.Clamp(siguiente.x, izquierda, derecha);
         siguiente.y = Mathf.Clamp(siguiente.y, abajo, arriba);
         cuerpo.MovePosition(siguiente);
+    }
+
+    bool Choca(Vector2 avance)
+    {
+        return cuerpo.Cast(avance, filtro, choques, avance.magnitude) > 0;
     }
 
     public void Recibir(int daño)
