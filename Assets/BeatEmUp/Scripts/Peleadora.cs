@@ -19,6 +19,8 @@ public class Peleadora : MonoBehaviour
     [SerializeField] float derecha = 11f;
     [SerializeField] float arriba = 0.5f;
     [SerializeField] float abajo = -6.5f;
+    [Tooltip("La cámara que avanza: la chica no puede volver más atrás que su borde")]
+    [SerializeField] CamaraCalle camara;
 
     [Header("Obstáculos")]
     [Tooltip("Con qué choca: con Use Triggers apagado, los triggers no la frenan")]
@@ -95,7 +97,8 @@ public class Peleadora : MonoBehaviour
             avance.y = 0;
         }
         Vector2 siguiente = cuerpo.position + avance;
-        siguiente.x = Mathf.Clamp(siguiente.x, izquierda, derecha);
+        float borde = Mathf.Max(izquierda, camara.BordeIzquierdo());
+        siguiente.x = Mathf.Clamp(siguiente.x, borde, derecha);
         siguiente.y = Mathf.Clamp(siguiente.y, abajo, arriba);
         cuerpo.MovePosition(siguiente);
     }
