@@ -6332,6 +6332,7 @@ GameObject:
   - component: {fileID: 1991859371}
   - component: {fileID: 1991859372}
   - component: {fileID: 1991859373}
+  - component: {fileID: 1991859374}
   m_Layer: 0
   m_Name: Peleadora
   m_TagString: Untagged
@@ -6377,6 +6378,7 @@ MonoBehaviour:
   abajo: -6.5
   dibujo: {fileID: 481797164}
   animador: {fileID: 481797163}
+  aturdida: 0.4
 --- !u!50 &1991859371
 Rigidbody2D:
   serializedVersion: 5
@@ -6442,6 +6444,20 @@ MonoBehaviour:
   empujonFuerte: 9
   "da\xF1o": 1
   "da\xF1oFuerte": 2
+--- !u!114 &1991859374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1991859367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fce50f807be5a104b8c2381300933b8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Vida
+  vidaMaxima: 6
+  invulnerable: 0
 --- !u!1001 &2143051303
 PrefabInstance:
   m_ObjectHideFlags: 0

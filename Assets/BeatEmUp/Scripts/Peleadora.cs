@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -24,11 +25,17 @@ public class Peleadora : MonoBehaviour
     [Tooltip("El Animator del hijo Cuerpo")]
     [SerializeField] Animator animador;
 
+    [Header("Golpes recibidos")]
+    [Tooltip("Segundos que queda quieta al recibir un golpe")]
+    [SerializeField] float aturdida = 0.4f;
+
     InputAction mover;
     Rigidbody2D cuerpo;
     Vector2 direccion;
     Salto salto;
     Combo combo;
+    Vida vida;
+    float quietaHasta;
 
     void Start()
     {
@@ -37,6 +44,7 @@ public class Peleadora : MonoBehaviour
         cuerpo = GetComponent<Rigidbody2D>();
         salto = GetComponent<Salto>();
         combo = GetComponent<Combo>();
+        vida = GetComponent<Vida>();
     }
 
     void Update()
@@ -47,7 +55,7 @@ public class Peleadora : MonoBehaviour
             direccion.y = 0;
         }
 
-        if (combo.Golpeando())
+        if (combo.Golpeando() || Time.time < quietaHasta)
         {
             direccion = Vector2.zero;
         }
@@ -73,5 +81,31 @@ public class Peleadora : MonoBehaviour
         siguiente.x = Mathf.Clamp(siguiente.x, izquierda, derecha);
         siguiente.y = Mathf.Clamp(siguiente.y, abajo, arriba);
         cuerpo.MovePosition(siguiente);
+    }
+
+    public void Recibir(int daño)
+    {
+        if (!vida.RecibirDaño(daño))
+        {
+            return;
+        }
+        animador.SetTrigger("Herido");
+        quietaHasta = Time.time + aturdida;
+        StartCoroutine(Parpadear());
+        if (!vida.Vivo())
+        {
+            Debug.Log(nombre + " ya no puede más");
+        }
+    }
+
+    IEnumerator Parpadear()
+    {
+        while (vida.Protegida())
+        {
+            dibujo.enabled = false;
+            yield return new WaitForSeconds(0.1f);
+            dibujo.enabled = true;
+            yield return new WaitForSeconds(0.1f);
+        }
     }
 }

@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Punk : MonoBehaviour
 {
+    enum Estado { Acercarse, Atacar, Herido, Caido }
+
     [Header("Persecución")]
     [Tooltip("La peleadora a la que persigue")]
     [SerializeField] Transform objetivo;
@@ -14,6 +16,18 @@ public class Punk : MonoBehaviour
     [SerializeField] float velocidad = 2.5f;
     [Tooltip("Unidades por segundo hacia el fondo o hacia el frente")]
     [SerializeField] float velocidadProfundidad = 1.5f;
+
+    [Header("Ataque")]
+    [Tooltip("Segundos entre un puñetazo y el siguiente")]
+    [SerializeField] float espera = 1.5f;
+    [Tooltip("Segundos que dura el puñetazo; mientras tanto no se mueve")]
+    [SerializeField] float duracionGolpe = 0.6f;
+    [Tooltip("Distancia máxima hacia los lados para que el puñetazo llegue")]
+    [SerializeField] float alcance = 2f;
+    [Tooltip("Diferencia de profundidad máxima para que el puñetazo llegue")]
+    [SerializeField] float carril = 0.4f;
+    [Tooltip("Vida que quita cada puñetazo")]
+    [SerializeField] int daño = 1;
 
     [Header("Golpes")]
     [Tooltip("Cuánta velocidad de empujón pierde cada segundo")]
@@ -31,7 +45,8 @@ public class Punk : MonoBehaviour
     Animator animador;
     float empuje;
     Vida vida;
-    bool caido;
+    Estado estado;
+    float ultimoGolpe;
 
     void Start()
     {
@@ -49,19 +64,32 @@ public class Punk : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (empuje != 0)
+        switch (estado)
         {
-            Vector2 atras = cuerpo.position + new Vector2(empuje * Time.deltaTime, 0);
-            empuje = Mathf.MoveTowards(empuje, 0, freno * Time.deltaTime);
-            cuerpo.MovePosition(atras);
-            return;
+            case Estado.Acercarse:
+                Acercarse();
+                break;
+            case Estado.Atacar:
+                if (Time.time - ultimoGolpe > duracionGolpe)
+                {
+                    estado = Estado.Acercarse;
+                }
+                break;
+            case Estado.Herido:
+                Retroceder();
+                if (empuje == 0)
+                {
+                    estado = Estado.Acercarse;
+                }
+                break;
+            case Estado.Caido:
+                Retroceder();
+                break;
         }
+    }
 
-        if (caido)
-        {
-            return;
-        }
-
+    void Acercarse()
+    {
         Vector2 destino = new Vector2(objetivo.position.x + lado * distancia, objetivo.position.y);
 
         Vector2 siguiente = cuerpo.position;
@@ -73,6 +101,20 @@ public class Punk : MonoBehaviour
         dibujo.flipX = objetivo.position.x > cuerpo.position.x;
 
         cuerpo.MovePosition(siguiente);
+
+        if (!camina && Time.time - ultimoGolpe > espera)
+        {
+            ultimoGolpe = Time.time;
+            animador.SetTrigger("Golpear");
+            estado = Estado.Atacar;
+        }
+    }
+
+    void Retroceder()
+    {
+        Vector2 atras = cuerpo.position + new Vector2(empuje * Time.deltaTime, 0);
+        empuje = Mathf.MoveTowards(empuje, 0, freno * Time.deltaTime);
+        cuerpo.MovePosition(atras);
     }
 
     public void Recibir(float fuerza, float hacia, int daño)
@@ -81,6 +123,7 @@ public class Punk : MonoBehaviour
         empuje = fuerza * hacia;
         if (vida.Vivo())
         {
+            estado = Estado.Herido;
             animador.SetTrigger("Herido");
         }
         else
@@ -89,10 +132,25 @@ public class Punk : MonoBehaviour
         }
     }
 
+    public void Golpear()
+    {
+        float lejos = Mathf.Abs(objetivo.position.x - cuerpo.position.x);
+        float otroCarril = Mathf.Abs(objetivo.position.y - cuerpo.position.y);
+        if (lejos < alcance && otroCarril < carril)
+        {
+            Debug.Log(name + " le pega a la peleadora");
+            objetivo.GetComponent<Peleadora>().Recibir(daño);
+        }
+        else
+        {
+            Debug.Log(name + " falla");
+        }
+    }
+
     IEnumerator Caer()
     {
         Debug.Log(name + " cae");
-        caido = true;
+        estado = Estado.Caido;
         GetComponent<Collider2D>().enabled = false;
         animador.SetTrigger("Caer");
         yield return new WaitForSeconds(tendido);
