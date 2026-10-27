@@ -6440,6 +6440,8 @@ MonoBehaviour:
   carril: 0.4
   empujon: 3
   empujonFuerte: 9
+  "da\xF1o": 1
+  "da\xF1oFuerte": 2
 --- !u!1001 &2143051303
 PrefabInstance:
   m_ObjectHideFlags: 0

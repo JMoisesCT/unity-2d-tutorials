@@ -24,6 +24,10 @@ public class Combo : MonoBehaviour
     [SerializeField] float empujon = 3f;
     [Tooltip("Velocidad con la que el Kick empuja al Punk")]
     [SerializeField] float empujonFuerte = 9f;
+    [Tooltip("Vida que quitan el Jab y el Punch")]
+    [SerializeField] int daño = 1;
+    [Tooltip("Vida que quita el Kick")]
+    [SerializeField] int dañoFuerte = 2;
 
     InputAction atacar;
     int golpe;
@@ -94,11 +98,13 @@ public class Combo : MonoBehaviour
             {
                 Debug.Log("Le pega a " + punk.name);
                 float fuerza = empujon;
+                int quita = daño;
                 if (golpe == 3)
                 {
                     fuerza = empujonFuerte;
+                    quita = dañoFuerte;
                 }
-                punk.Recibir(fuerza, Lado());
+                punk.Recibir(fuerza, Lado(), quita);
             }
         }
     }

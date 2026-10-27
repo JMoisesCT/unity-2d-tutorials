@@ -106,6 +106,7 @@ GameObject:
   - component: {fileID: 3049799748888160582}
   - component: {fileID: 2192537249025597352}
   - component: {fileID: 2770401720930335321}
+  - component: {fileID: 8639299721024764112}
   m_Layer: 0
   m_Name: Punk
   m_TagString: Untagged
@@ -267,6 +268,7 @@ MonoBehaviour:
   distancia: 1.5
   velocidad: 2.5
   velocidadProfundidad: 1.5
+  freno: 15
 --- !u!61 &2770401720930335321
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -313,3 +315,16 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.2, y: 3}
   m_EdgeRadius: 0
+--- !u!114 &8639299721024764112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9210709016432483601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fce50f807be5a104b8c2381300933b8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Vida
+  vidaMaxima: 6
