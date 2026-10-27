@@ -29,6 +29,16 @@ public class Combo : MonoBehaviour
     [Tooltip("Vida que quita el Kick")]
     [SerializeField] int dañoFuerte = 2;
 
+    [Header("Patada voladora")]
+    [Tooltip("Centro de la caja de la patada voladora, medido desde el Cuerpo, mirando a la derecha")]
+    [SerializeField] Vector2 centroAereo = new Vector2(1.4f, 1f);
+    [Tooltip("Ancho y alto de la caja de la patada voladora")]
+    [SerializeField] Vector2 tamañoAereo = new Vector2(1.2f, 0.8f);
+    [Tooltip("Velocidad con la que la patada voladora empuja al Punk")]
+    [SerializeField] float empujonAereo = 6f;
+    [Tooltip("Vida que quita la patada voladora")]
+    [SerializeField] int dañoAereo = 2;
+
     InputAction atacar;
     int golpe;
     float ultimoGolpe;
@@ -90,7 +100,15 @@ public class Combo : MonoBehaviour
 
     public void Conectar()
     {
-        Collider2D[] tocados = Physics2D.OverlapBoxAll(CentroGolpe(), tamañoGolpe, 0);
+        Vector2 centro = CentroGolpe();
+        Vector2 tamaño = tamañoGolpe;
+        if (pateando)
+        {
+            centro = CentroAereo();
+            tamaño = tamañoAereo;
+        }
+
+        Collider2D[] tocados = Physics2D.OverlapBoxAll(centro, tamaño, 0);
         foreach (Collider2D tocado in tocados)
         {
             Punk punk = tocado.GetComponent<Punk>();
@@ -99,7 +117,12 @@ public class Combo : MonoBehaviour
                 Debug.Log("Le pega a " + punk.name);
                 float fuerza = empujon;
                 int quita = daño;
-                if (golpe == 3)
+                if (pateando)
+                {
+                    fuerza = empujonAereo;
+                    quita = dañoAereo;
+                }
+                else if (golpe == 3)
                 {
                     fuerza = empujonFuerte;
                     quita = dañoFuerte;
@@ -123,9 +146,16 @@ public class Combo : MonoBehaviour
         return (Vector2)transform.position + new Vector2(centroGolpe.x * Lado(), centroGolpe.y);
     }
 
+    Vector2 CentroAereo()
+    {
+        return (Vector2)dibujo.transform.position + new Vector2(centroAereo.x * Lado(), centroAereo.y);
+    }
+
     void OnDrawGizmosSelected()
     {
         Gizmos.color = new Color(1, 0, 0, 0.5f);
         Gizmos.DrawCube(CentroGolpe(), tamañoGolpe);
+        Gizmos.color = new Color(1, 0.6f, 0, 0.5f);
+        Gizmos.DrawCube(CentroAereo(), tamañoAereo);
     }
 }

@@ -6824,6 +6824,10 @@ MonoBehaviour:
   empujonFuerte: 9
   "da\xF1o": 1
   "da\xF1oFuerte": 2
+  centroAereo: {x: 1.4, y: 1}
+  "tama\xF1oAereo": {x: 1.2, y: 0.8}
+  empujonAereo: 6
+  "da\xF1oAereo": 2
 --- !u!114 &1991859374
 MonoBehaviour:
   m_ObjectHideFlags: 0
