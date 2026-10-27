@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class Peleadora : MonoBehaviour
 {
@@ -28,6 +29,8 @@ public class Peleadora : MonoBehaviour
     [Header("Golpes recibidos")]
     [Tooltip("Segundos que queda quieta al recibir un golpe")]
     [SerializeField] float aturdida = 0.4f;
+    [Tooltip("Segundos quieta antes de volver a empezar cuando se queda sin vida")]
+    [SerializeField] float reinicio = 1.5f;
 
     InputAction mover;
     Rigidbody2D cuerpo;
@@ -55,7 +58,7 @@ public class Peleadora : MonoBehaviour
             direccion.y = 0;
         }
 
-        if (combo.Golpeando() || Time.time < quietaHasta)
+        if (combo.Golpeando() || Time.time < quietaHasta || !vida.Vivo())
         {
             direccion = Vector2.zero;
         }
@@ -95,6 +98,9 @@ public class Peleadora : MonoBehaviour
         if (!vida.Vivo())
         {
             Debug.Log(nombre + " ya no puede más");
+            combo.enabled = false;
+            salto.enabled = false;
+            StartCoroutine(Reiniciar());
         }
     }
 
@@ -107,5 +113,11 @@ public class Peleadora : MonoBehaviour
             dibujo.enabled = true;
             yield return new WaitForSeconds(0.1f);
         }
+    }
+
+    IEnumerator Reiniciar()
+    {
+        yield return new WaitForSeconds(reinicio);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

@@ -6,6 +6,8 @@ public class Vida : MonoBehaviour
     [SerializeField] int vidaMaxima = 6;
     [Tooltip("Segundos sin recibir daño después de un golpe")]
     [SerializeField] float invulnerable = 0f;
+    [Tooltip("La barra de vida en pantalla; vacío si no tiene")]
+    [SerializeField] BarraVida barra;
 
     int vida;
     float protegidaHasta;
@@ -17,13 +19,17 @@ public class Vida : MonoBehaviour
 
     public bool RecibirDaño(int daño)
     {
-        if (Protegida())
+        if (Protegida() || !Vivo())
         {
             return false;
         }
         vida -= daño;
         protegidaHasta = Time.time + invulnerable;
         Debug.Log(name + " tiene " + vida + " de vida");
+        if (barra != null)
+        {
+            barra.Mostrar(vida, vidaMaxima);
+        }
         return true;
     }
 
