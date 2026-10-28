@@ -12,6 +12,8 @@ public class IA : MonoBehaviour
     [Header("Ficha")]
     [Tooltip("Los números del luchador: un asset de DatosHeroe")]
     [SerializeField] DatosHeroe datos;
+    [Tooltip("Qué tan lejos y hacia dónde mira: un asset de PerfilIA")]
+    [SerializeField] PerfilIA perfil;
     [Tooltip("Se voltea con el luchador: ahí aparece el arma")]
     [SerializeField] Transform mano;
 
@@ -22,8 +24,6 @@ public class IA : MonoBehaviour
     [SerializeField] float pausa = 3f;
 
     [Header("Pelea")]
-    [Tooltip("Distancia a la que ve a un rival")]
-    [SerializeField] float vision = 6f;
     [Tooltip("A cuántas unidades del rival se para a golpear")]
     [SerializeField] float distanciaAtaque = 1f;
 
@@ -74,7 +74,7 @@ public class IA : MonoBehaviour
     void ElegirEstado()
     {
         Estado nuevo = Estado.Vagar;
-        if (rival != null && Vector2.Distance(cuerpo.position, rival.transform.position) < vision)
+        if (rival != null && Ve(rival.transform.position))
         {
             nuevo = Estado.Perseguir;
             if (PuedeAtacar())
@@ -88,6 +88,36 @@ public class IA : MonoBehaviour
             Debug.Log(name + ": " + estado + " → " + nuevo);
             estado = nuevo;
         }
+    }
+
+    bool Ve(Vector2 punto)
+    {
+        Vector2 hacia = punto - cuerpo.position;
+        if (hacia.magnitude > perfil.radio)
+        {
+            return false;
+        }
+
+        if (Vector2.Angle(Mirada(), hacia) > perfil.cono / 2)
+        {
+            return false;
+        }
+
+        if (Physics2D.Linecast(cuerpo.position, punto, perfil.muros))
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    Vector2 Mirada()
+    {
+        if (dibujo.flipX)
+        {
+            return Vector2.left;
+        }
+        return Vector2.right;
     }
 
     void Vagar()
@@ -159,6 +189,34 @@ public class IA : MonoBehaviour
         {
             dibujo.flipX = false;
             mano.localScale = new Vector3(1, 1, 1);
+        }
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Vector2 centro = transform.position;
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(centro, perfil.radio);
+
+        if (dibujo == null)
+        {
+            dibujo = GetComponent<SpriteRenderer>();
+        }
+
+        Gizmos.color = Color.cyan;
+        Vector2 borde1 = Quaternion.Euler(0, 0, perfil.cono / 2) * Mirada();
+        Vector2 borde2 = Quaternion.Euler(0, 0, -perfil.cono / 2) * Mirada();
+        Gizmos.DrawLine(centro, centro + borde1 * perfil.radio);
+        Gizmos.DrawLine(centro, centro + borde2 * perfil.radio);
+
+        if (rival != null)
+        {
+            Gizmos.color = Color.red;
+            if (Ve(rival.transform.position))
+            {
+                Gizmos.color = Color.green;
+            }
+            Gizmos.DrawLine(centro, rival.transform.position);
         }
     }
 }

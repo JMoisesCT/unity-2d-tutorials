@@ -267,8 +267,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::IA
   datos: {fileID: 11400000, guid: b38f1463c9b3d974ab7eb765e7ed89a4, type: 2}
+  perfil: {fileID: 11400000, guid: f91ee9beb52732448b00538f8c6bc49f, type: 2}
   mano: {fileID: 3844277796604356496}
   radioPaseo: 2
   pausa: 3
-  vision: 6
   distanciaAtaque: 1
