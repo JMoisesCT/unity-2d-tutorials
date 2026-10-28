@@ -15,6 +15,12 @@ public class ZonaPelea : MonoBehaviour
     [Tooltip("La cámara que se congela mientras dura la pelea")]
     [SerializeField] CamaraCalle camara;
 
+    [Header("Final")]
+    [Tooltip("La barra del HUD para lo que aparece aquí; vacío en las zonas normales")]
+    [SerializeField] BarraVida barraJefe;
+    [Tooltip("Marcada solo en la última zona: al vencerla, termina el juego")]
+    [SerializeField] bool final;
+
     Transform peleadora;
     List<Punk> vivos = new List<Punk>();
     int oleada;
@@ -39,6 +45,11 @@ public class ZonaPelea : MonoBehaviour
         {
             Punk nuevo = Instantiate(punk, punto.position, Quaternion.identity, transform);
             nuevo.Perseguir(peleadora);
+            if (barraJefe != null)
+            {
+                barraJefe.gameObject.SetActive(true);
+                nuevo.GetComponent<Vida>().MostrarEn(barraJefe);
+            }
             vivos.Add(nuevo);
         }
     }
@@ -65,6 +76,10 @@ public class ZonaPelea : MonoBehaviour
             else
             {
                 Debug.Log("¡Zona superada!");
+                if (final)
+                {
+                    Debug.Log("¡Calle limpia! Fin del juego");
+                }
                 camara.Congelar(false);
                 Destroy(gameObject);
             }

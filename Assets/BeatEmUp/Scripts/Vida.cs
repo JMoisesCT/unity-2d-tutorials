@@ -33,6 +33,11 @@ public class Vida : MonoBehaviour
         return true;
     }
 
+    public void MostrarEn(BarraVida nueva)
+    {
+        barra = nueva;
+    }
+
     public bool Protegida()
     {
         return Time.time < protegidaHasta;
