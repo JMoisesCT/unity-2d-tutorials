@@ -8,8 +8,6 @@ public class Combatiente : MonoBehaviour
 
     static List<Combatiente> todos = new List<Combatiente>();
 
-    SpriteRenderer dibujo;
-
     void OnEnable()
     {
         todos.Add(this);
@@ -22,31 +20,19 @@ public class Combatiente : MonoBehaviour
         Debug.Log(name + " sale. Combatientes: " + todos.Count);
     }
 
-    void Start()
+    public bool EsRival(Combatiente otro)
     {
-        dibujo = GetComponent<SpriteRenderer>();
+        return otro.bando != bando;
     }
 
-    void Update()
-    {
-        Combatiente rival = RivalMasCercano();
-        if (rival == null)
-        {
-            return;
-        }
-
-        dibujo.flipX = rival.transform.position.x < transform.position.x;
-        Debug.DrawLine(transform.position, rival.transform.position, Color.red);
-    }
-
-    Combatiente RivalMasCercano()
+    public Combatiente RivalMasCercano()
     {
         Combatiente cercano = null;
         float menor = Mathf.Infinity;
 
         foreach (Combatiente otro in todos)
         {
-            if (otro.bando != bando)
+            if (EsRival(otro))
             {
                 float distancia = Vector2.Distance(transform.position, otro.transform.position);
                 if (distancia < menor)

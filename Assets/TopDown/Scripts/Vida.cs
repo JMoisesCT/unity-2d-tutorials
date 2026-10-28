@@ -3,11 +3,18 @@ using UnityEngine;
 
 public class Vida : MonoBehaviour
 {
+    [Header("Vida")]
     [SerializeField] int vida = 3;
     [Tooltip("Segundos sin recibir daño después de un golpe")]
     [SerializeField] float invulnerable = 1f;
     [Tooltip("Los corazones de la pantalla")]
     [SerializeField] Corazones hud;
+
+    [Header("Botín")]
+    [Tooltip("El prefab de la moneda que suelta al morir")]
+    [SerializeField] Moneda moneda;
+    [Tooltip("Cuántas monedas suelta")]
+    [SerializeField] int monedas = 0;
 
     bool protegido;
     int vidaMaxima;
@@ -40,20 +47,33 @@ public class Vida : MonoBehaviour
 
         if (vida <= 0)
         {
+            SoltarMonedas();
             Sala sala = FindAnyObjectByType<Sala>();
-            if (TryGetComponent(out Perseguidor enemigo))
+            if (sala != null)
             {
-                sala.EnemigoVencido();
-            }
-            else
-            {
-                sala.HeroeVencido();
+                if (TryGetComponent(out Perseguidor enemigo))
+                {
+                    sala.EnemigoVencido();
+                }
+                else
+                {
+                    sala.HeroeVencido();
+                }
             }
             Destroy(gameObject);
         }
         else
         {
             StartCoroutine(Proteger());
+        }
+    }
+
+    void SoltarMonedas()
+    {
+        for (int i = 0; i < monedas; i++)
+        {
+            Vector2 lugar = (Vector2)transform.position + Random.insideUnitCircle;
+            Instantiate(moneda, lugar, Quaternion.identity);
         }
     }
 

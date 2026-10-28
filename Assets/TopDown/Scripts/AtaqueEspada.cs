@@ -20,7 +20,7 @@ public class AtaqueEspada : Ataque
         Collider2D[] tocados = Physics2D.OverlapCircleAll(puntoGolpe.position, datos.alcance);
         foreach (Collider2D tocado in tocados)
         {
-            if (tocado.transform != transform.root && tocado.TryGetComponent(out Vida vida))
+            if (PuedeGolpear(tocado) && tocado.TryGetComponent(out Vida vida))
             {
                 vida.RecibirDaño(datos.daño);
             }

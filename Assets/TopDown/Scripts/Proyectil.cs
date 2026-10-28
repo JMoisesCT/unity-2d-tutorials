@@ -6,10 +6,12 @@ public class Proyectil : MonoBehaviour
     [SerializeField] float velocidad = 10f;
 
     int daño;
+    Ataque arma;
 
-    public void Lanzar(Vector2 direccion, int dañoDelHeroe)
+    public void Lanzar(Vector2 direccion, int dañoDelHeroe, Ataque quien)
     {
         daño = dañoDelHeroe;
+        arma = quien;
         transform.up = direccion;
         GetComponent<Rigidbody2D>().linearVelocity = direccion * velocidad;
     }
@@ -21,7 +23,7 @@ public class Proyectil : MonoBehaviour
             return;
         }
 
-        if (otro.TryGetComponent(out Heroe heroe))
+        if (!arma.PuedeGolpear(otro))
         {
             return;
         }

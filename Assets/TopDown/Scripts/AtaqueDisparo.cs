@@ -11,6 +11,6 @@ public class AtaqueDisparo : Ataque
 
         Vector2 direccion = new Vector2(transform.lossyScale.x, 0);
         Proyectil nuevo = Instantiate(proyectil, transform.position, Quaternion.identity);
-        nuevo.Lanzar(direccion, datos.daño);
+        nuevo.Lanzar(direccion, datos.daño, this);
     }
 }

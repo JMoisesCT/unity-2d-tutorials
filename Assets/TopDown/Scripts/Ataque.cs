@@ -6,4 +6,14 @@ public class Ataque : MonoBehaviour
     {
         Debug.Log(datos.nombre + " ataca con " + name);
     }
+
+    public bool PuedeGolpear(Collider2D tocado)
+    {
+        Combatiente mio = GetComponentInParent<Combatiente>();
+        if (mio != null && tocado.TryGetComponent(out Combatiente suyo))
+        {
+            return mio.EsRival(suyo);
+        }
+        return tocado.transform != transform.root;
+    }
 }
