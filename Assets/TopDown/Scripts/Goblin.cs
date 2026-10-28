@@ -49,4 +49,9 @@ public class Goblin : MonoBehaviour
         Debug.Log("El goblin tiene " + monedas + " monedas");
         contador.Mostrar(monedas);
     }
+
+    public int Monedas()
+    {
+        return monedas;
+    }
 }

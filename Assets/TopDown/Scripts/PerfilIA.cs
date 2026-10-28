@@ -11,4 +11,14 @@ public class PerfilIA : ScriptableObject
     public float cono = 120f;
     [Tooltip("Las Layers que le tapan la vista")]
     public LayerMask muros;
+
+    [Header("Interés")]
+    [Tooltip("Puntos que vale un rival del otro bando")]
+    public float odio = 8f;
+    [Tooltip("Puntos que vale cada moneda del goblin")]
+    public float codicia = 1f;
+
+    [Header("Memoria")]
+    [Tooltip("Segundos que sigue a un rival que dejó de ver")]
+    public float memoria = 2f;
 }

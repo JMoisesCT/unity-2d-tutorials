@@ -25,24 +25,18 @@ public class Combatiente : MonoBehaviour
         return otro.bando != bando;
     }
 
-    public Combatiente RivalMasCercano()
+    public List<Combatiente> Rivales()
     {
-        Combatiente cercano = null;
-        float menor = Mathf.Infinity;
+        List<Combatiente> rivales = new List<Combatiente>();
 
         foreach (Combatiente otro in todos)
         {
             if (EsRival(otro))
             {
-                float distancia = Vector2.Distance(transform.position, otro.transform.position);
-                if (distancia < menor)
-                {
-                    menor = distancia;
-                    cercano = otro;
-                }
+                rivales.Add(otro);
             }
         }
 
-        return cercano;
+        return rivales;
     }
 }

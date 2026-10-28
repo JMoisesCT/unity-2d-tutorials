@@ -38,6 +38,7 @@ public class IA : MonoBehaviour
     Combatiente rival;
     Ataque arma;
     float siguienteGolpe;
+    float recuerdaHasta;
 
     void Start()
     {
@@ -54,7 +55,17 @@ public class IA : MonoBehaviour
 
     void FixedUpdate()
     {
-        rival = combatiente.RivalMasCercano();
+        Combatiente visto = ElegirRival();
+        if (visto != null)
+        {
+            rival = visto;
+            recuerdaHasta = Time.time + perfil.memoria;
+        }
+        else if (Time.time > recuerdaHasta)
+        {
+            rival = null;
+        }
+
         ElegirEstado();
 
         switch (estado)
@@ -74,7 +85,7 @@ public class IA : MonoBehaviour
     void ElegirEstado()
     {
         Estado nuevo = Estado.Vagar;
-        if (rival != null && Ve(rival.transform.position))
+        if (rival != null)
         {
             nuevo = Estado.Perseguir;
             if (PuedeAtacar())
@@ -88,6 +99,39 @@ public class IA : MonoBehaviour
             Debug.Log(name + ": " + estado + " → " + nuevo);
             estado = nuevo;
         }
+    }
+
+    Combatiente ElegirRival()
+    {
+        Combatiente mejor = null;
+        float mayor = 0;
+
+        foreach (Combatiente otro in combatiente.Rivales())
+        {
+            if (Ve(otro.transform.position))
+            {
+                float puntaje = Puntaje(otro);
+                if (puntaje > mayor)
+                {
+                    mayor = puntaje;
+                    mejor = otro;
+                }
+            }
+        }
+
+        return mejor;
+    }
+
+    float Puntaje(Combatiente otro)
+    {
+        float interes = perfil.odio;
+        if (otro.TryGetComponent(out Goblin goblin))
+        {
+            interes = goblin.Monedas() * perfil.codicia;
+        }
+
+        float distancia = Vector2.Distance(cuerpo.position, otro.transform.position);
+        return interes - distancia;
     }
 
     bool Ve(Vector2 punto)

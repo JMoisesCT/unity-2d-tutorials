@@ -17,3 +17,6 @@ MonoBehaviour:
   muros:
     serializedVersion: 2
     m_Bits: 8
+  odio: 8
+  codicia: 1
+  memoria: 2

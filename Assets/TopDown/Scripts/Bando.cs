@@ -1,5 +1,6 @@
 public enum Bando
 {
     Heroes,
-    Monstruos
+    Monstruos,
+    Goblin
 }
