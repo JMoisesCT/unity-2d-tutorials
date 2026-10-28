@@ -74,7 +74,7 @@ public class IA : MonoBehaviour
                 Vagar();
                 break;
             case Estado.Perseguir:
-                Caminar(PuestoDeAtaque(), datos.velocidad);
+                Caminar(PuestoDeAtaque(), datos.velocidad * perfil.prisa);
                 break;
             case Estado.Atacar:
                 Atacar();
@@ -233,6 +233,16 @@ public class IA : MonoBehaviour
         {
             dibujo.flipX = false;
             mano.localScale = new Vector3(1, 1, 1);
+        }
+    }
+
+    void OnCollisionStay2D(Collision2D choque)
+    {
+        if (choque.gameObject.layer == LayerMask.NameToLayer("Paredes"))
+        {
+            Debug.Log(name + " está contra una pared");
+            siguientePaseo = 0;
+            recuerdaHasta = 0;
         }
     }
 

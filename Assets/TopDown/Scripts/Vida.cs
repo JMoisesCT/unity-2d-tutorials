@@ -36,7 +36,7 @@ public class Vida : MonoBehaviour
 
     public void RecibirDaño(int daño)
     {
-        if (protegido)
+        if (protegido || vida <= 0)
         {
             return;
         }
@@ -47,6 +47,12 @@ public class Vida : MonoBehaviour
 
         if (vida <= 0)
         {
+            if (TryGetComponent(out Goblin goblin))
+            {
+                goblin.Morir();
+                return;
+            }
+
             SoltarMonedas();
             Sala sala = FindAnyObjectByType<Sala>();
             if (sala != null)
@@ -65,6 +71,10 @@ public class Vida : MonoBehaviour
         else
         {
             StartCoroutine(Proteger());
+            if (TryGetComponent(out Goblin goblin))
+            {
+                goblin.PerderMonedas();
+            }
         }
     }
 

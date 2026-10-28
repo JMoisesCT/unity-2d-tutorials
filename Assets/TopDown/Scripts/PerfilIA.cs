@@ -21,4 +21,9 @@ public class PerfilIA : ScriptableObject
     [Header("Memoria")]
     [Tooltip("Segundos que sigue a un rival que dejó de ver")]
     public float memoria = 2f;
+
+    [Header("Persecución")]
+    [Tooltip("Parte de su velocidad con la que persigue (1 = toda)")]
+    [Range(0, 1)]
+    public float prisa = 0.7f;
 }
