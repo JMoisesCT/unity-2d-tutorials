@@ -7,11 +7,16 @@ public class Goblin : MonoBehaviour
     [Tooltip("Unidades por segundo")]
     [SerializeField] float velocidad = 5f;
 
+    [Header("Monedas")]
+    [Tooltip("El contador del HUD")]
+    [SerializeField] ContadorMonedas contador;
+
     InputAction mover;
     Rigidbody2D cuerpo;
     SpriteRenderer dibujo;
     Animator animador;
     Vector2 direccion;
+    int monedas;
 
     void Start()
     {
@@ -36,5 +41,12 @@ public class Goblin : MonoBehaviour
     void FixedUpdate()
     {
         cuerpo.linearVelocity = direccion * velocidad;
+    }
+
+    public void Recoger(int cantidad)
+    {
+        monedas = monedas + cantidad;
+        Debug.Log("El goblin tiene " + monedas + " monedas");
+        contador.Mostrar(monedas);
     }
 }
