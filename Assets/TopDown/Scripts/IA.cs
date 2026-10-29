@@ -108,7 +108,7 @@ public class IA : MonoBehaviour
 
         foreach (Combatiente otro in combatiente.Rivales())
         {
-            if (Ve(otro.transform.position))
+            if (Ve(otro.transform.position) && !EstaEscondido(otro))
             {
                 float puntaje = Puntaje(otro);
                 if (puntaje > mayor)
@@ -153,6 +153,15 @@ public class IA : MonoBehaviour
         }
 
         return true;
+    }
+
+    bool EstaEscondido(Combatiente otro)
+    {
+        if (otro.TryGetComponent(out Goblin goblin))
+        {
+            return goblin.Escondido();
+        }
+        return false;
     }
 
     Vector2 Mirada()
@@ -240,7 +249,6 @@ public class IA : MonoBehaviour
     {
         if (choque.gameObject.layer == LayerMask.NameToLayer("Paredes"))
         {
-            Debug.Log(name + " está contra una pared");
             siguientePaseo = 0;
             recuerdaHasta = 0;
         }
@@ -266,7 +274,7 @@ public class IA : MonoBehaviour
         if (rival != null)
         {
             Gizmos.color = Color.red;
-            if (Ve(rival.transform.position))
+            if (Ve(rival.transform.position) && !EstaEscondido(rival))
             {
                 Gizmos.color = Color.green;
             }
