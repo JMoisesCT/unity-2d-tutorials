@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Orco
+  m_Controller: {fileID: 9100000, guid: 9eea6999e80064e4ab910c580b9f3812, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: f7b856caac7ad2c4ebd29bbe59d6c6d9, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: b6ddb4052b82af04993d4c90229b6f4e, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: b4f9386973c49374bac4faef62a65ba9, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 42a0988d7f957374e8f30a1028b22006, type: 2}

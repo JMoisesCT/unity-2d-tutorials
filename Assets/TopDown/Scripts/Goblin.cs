@@ -39,6 +39,7 @@ public class Goblin : MonoBehaviour
     Animator animador;
     Vector2 direccion;
     int monedas;
+    int juntadas;
     bool escondido;
     Vector2 afuera;
 
@@ -50,6 +51,7 @@ public class Goblin : MonoBehaviour
         dibujo = GetComponent<SpriteRenderer>();
         animador = GetComponent<Animator>();
         GetComponent<Vida>().Empezar(vidaMaxima);
+        Debug.Log("Récord: " + PlayerPrefs.GetInt("RecordMonedas", 0) + " monedas");
     }
 
     void Update()
@@ -135,6 +137,7 @@ public class Goblin : MonoBehaviour
     public void Recoger(int cantidad)
     {
         monedas = monedas + cantidad;
+        juntadas = juntadas + cantidad;
         Debug.Log("El goblin tiene " + monedas + " monedas");
         contador.Mostrar(monedas);
     }
@@ -161,11 +164,26 @@ public class Goblin : MonoBehaviour
     public void Morir()
     {
         Debug.Log("El goblin cae. La arena vuelve a empezar");
+        GuardarRecord();
         GetComponent<Combatiente>().enabled = false;
         cuerpo.linearVelocity = Vector2.zero;
         animador.SetBool("Corriendo", false);
         StartCoroutine(Reiniciar());
         enabled = false;
+    }
+
+    void GuardarRecord()
+    {
+        int record = PlayerPrefs.GetInt("RecordMonedas", 0);
+        if (juntadas > record)
+        {
+            PlayerPrefs.SetInt("RecordMonedas", juntadas);
+            Debug.Log("¡Récord nuevo! " + juntadas + " monedas");
+        }
+        else
+        {
+            Debug.Log("Juntaste " + juntadas + " monedas. El récord sigue en " + record);
+        }
     }
 
     IEnumerator Reiniciar()

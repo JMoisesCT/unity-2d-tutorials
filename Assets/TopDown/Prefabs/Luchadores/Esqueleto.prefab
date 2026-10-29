@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &3142413522373950412
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2479173733592489779, guid: bb3d702d788612149b3a1cd4bbcbf442, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: edc80f26638feb543b30fae093007334, type: 3}
+    - target: {fileID: 4491230595571358067, guid: bb3d702d788612149b3a1cd4bbcbf442, type: 3}
+      propertyPath: datos
+      value: 
+      objectReference: {fileID: 11400000, guid: 7c724a91c263ec245a4864e00808d6a8, type: 2}
+    - target: {fileID: 4491230595571358067, guid: bb3d702d788612149b3a1cd4bbcbf442, type: 3}
+      propertyPath: perfil
+      value: 
+      objectReference: {fileID: 11400000, guid: cc21ac102c40eaf4b848856995bff2e0, type: 2}
+    - target: {fileID: 6560539684619427847, guid: bb3d702d788612149b3a1cd4bbcbf442, type: 3}
+      propertyPath: m_Name
+      value: Esqueleto
+      objectReference: {fileID: 0}
+    - target: {fileID: 6861711505198400849, guid: bb3d702d788612149b3a1cd4bbcbf442, type: 3}
+      propertyPath: bando
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8063954951026115824, guid: bb3d702d788612149b3a1cd4bbcbf442, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8063954951026115824, guid: bb3d702d788612149b3a1cd4bbcbf442, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8063954951026115824, guid: bb3d702d788612149b3a1cd4bbcbf442, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8063954951026115824, guid: bb3d702d788612149b3a1cd4bbcbf442, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8063954951026115824, guid: bb3d702d788612149b3a1cd4bbcbf442, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8063954951026115824, guid: bb3d702d788612149b3a1cd4bbcbf442, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8063954951026115824, guid: bb3d702d788612149b3a1cd4bbcbf442, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8063954951026115824, guid: bb3d702d788612149b3a1cd4bbcbf442, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8063954951026115824, guid: bb3d702d788612149b3a1cd4bbcbf442, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8063954951026115824, guid: bb3d702d788612149b3a1cd4bbcbf442, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8975547651362028165, guid: bb3d702d788612149b3a1cd4bbcbf442, type: 3}
+      propertyPath: m_Size.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8975547651362028165, guid: bb3d702d788612149b3a1cd4bbcbf442, type: 3}
+      propertyPath: m_Size.y
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8975547651362028165, guid: bb3d702d788612149b3a1cd4bbcbf442, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 8975547651362028165, guid: bb3d702d788612149b3a1cd4bbcbf442, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bb3d702d788612149b3a1cd4bbcbf442, type: 3}
