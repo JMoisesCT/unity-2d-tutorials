@@ -14,19 +14,20 @@ Cada curso vive en su propia rama, y cada sesión tiene un tag con el estado exa
 | Curvas y velocidad (10 sesiones) | `plat-curvas-1` | `plat-curvas-1-sesion-01` … `plat-curvas-1-sesion-10` | `Assets/Curvas/` |
 | Arrastrar y soltar (8 sesiones) | `clics-1` | `clics-1-sesion-01` … `clics-1-sesion-08` | `Assets/Clics/` |
 | Top-down: héroes que cambian de forma (9 sesiones) | `topdown-1` | `topdown-1-sesion-01` … `topdown-1-sesion-09` | `Assets/TopDown/` |
+| Top-down 2: el goblin de las monedas (9 sesiones) | `topdown-2` | `topdown-2-sesion-01` … `topdown-2-sesion-09` | `Assets/TopDown/` |
 | Beat 'em up: la calle y sus peleadores (4 sesiones) | `beatemup-1` | `beatemup-1-sesion-01` … `beatemup-1-sesion-04` | `Assets/BeatEmUp/` |
 | Beat 'em up 2: golpes y combos (3 sesiones) | `beatemup-2` | `beatemup-2-sesion-01` … `beatemup-2-sesion-03` | `Assets/BeatEmUp/` |
 | Beat 'em up 3: vida (3 sesiones) | `beatemup-3` | `beatemup-3-sesion-01` … `beatemup-3-sesion-03` | `Assets/BeatEmUp/` |
 | Beat 'em up 4: una calle completa (7 sesiones) | `beatemup-4` | `beatemup-4-sesion-01` … `beatemup-4-sesion-07` | `Assets/BeatEmUp/` |
 
-El curso de Plataformas 2D parte del final del curso base (`sesion-08`), y Plataformas 2D 2 continúa donde termina Plataformas 2D (`plataformas-1-sesion-08`). Curvas y velocidad, Arrastrar y soltar, Top-down y Beat 'em up también parten de `sesion-08` y no dependen de los otros cursos. Cada Beat 'em up siguiente continúa donde termina el anterior (`beatemup-1-sesion-04`, `beatemup-2-sesion-03` y `beatemup-3-sesion-03`).
+El curso de Plataformas 2D parte del final del curso base (`sesion-08`), y Plataformas 2D 2 continúa donde termina Plataformas 2D (`plataformas-1-sesion-08`). Curvas y velocidad, Arrastrar y soltar, Top-down y Beat 'em up también parten de `sesion-08` y no dependen de los otros cursos. Top-down 2 continúa donde termina Top-down (`topdown-1-sesion-09`). Cada Beat 'em up siguiente continúa donde termina el anterior (`beatemup-1-sesion-04`, `beatemup-2-sesion-03` y `beatemup-3-sesion-03`).
 
 ## Cómo usarlo
 
 1. En GitHub, elige el tag de la sesión que quieres (selector de ramas › **Tags**).
 2. Botón **Code › Download ZIP** y descomprímelo.
 3. En Unity Hub, **Add › Add project from disk** y elige la carpeta.
-4. Abre la escena del curso: `Assets/Game/Scenes/` (curso base) o `Assets/Plataformas/Scenes/Nivel1.unity` (Plataformas 2D; en Plataformas 2D 2, desde la sesión 5, `Menu.unity`) o `Assets/Curvas/Scenes/` (Curvas y velocidad; al final, `NivelAlien.unity` y `NivelCaracol.unity`) o `Assets/Clics/Scenes/Nivel1.unity` (Arrastrar y soltar) o `Assets/TopDown/Scenes/Mazmorra.unity` (Top-down) o `Assets/BeatEmUp/Scenes/Calle.unity` (Beat 'em up).
+4. Abre la escena del curso: `Assets/Game/Scenes/` (curso base) o `Assets/Plataformas/Scenes/Nivel1.unity` (Plataformas 2D; en Plataformas 2D 2, desde la sesión 5, `Menu.unity`) o `Assets/Curvas/Scenes/` (Curvas y velocidad; al final, `NivelAlien.unity` y `NivelCaracol.unity`) o `Assets/Clics/Scenes/Nivel1.unity` (Arrastrar y soltar) o `Assets/TopDown/Scenes/Mazmorra.unity` (Top-down) o `Assets/TopDown/Scenes/Arena.unity` (Top-down 2) o `Assets/BeatEmUp/Scenes/Calle.unity` (Beat 'em up).
 
 ## Requisitos
 
