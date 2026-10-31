@@ -78,4 +78,12 @@ public class Nave : MonoBehaviour
         siguiente.y = Mathf.Clamp(siguiente.y, minimo.y + margen.y, maximo.y - margen.y);
         cuerpo.MovePosition(siguiente);
     }
+
+    void OnTriggerEnter2D(Collider2D otro)
+    {
+        if (otro.TryGetComponent(out Vida vida))
+        {
+            Debug.Log("¡Choque con " + otro.name + "!");
+        }
+    }
 }
