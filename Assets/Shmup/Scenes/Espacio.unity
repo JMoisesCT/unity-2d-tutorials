@@ -261,10 +261,11 @@ MonoBehaviour:
   nombre: Nave azul
   velocidad: 6
   margen: {x: 0.4, y: 0.5}
-  laser: {fileID: 3296445138607605329, guid: 37ff80e3a1a068c4490bab93738b8562, type: 3}
+  laser: {fileID: 2041784665493892948, guid: 37ff80e3a1a068c4490bab93738b8562, type: 3}
   canon: {fileID: 1406726620}
   cadencia: 0.2
   sonidoLaser: {fileID: 8300000, guid: 08b8d98ca062d2b468f8741af4bcfbf6, type: 3}
+  carpeta: {fileID: 1653177007}
 --- !u!50 &357720054
 Rigidbody2D:
   serializedVersion: 5
@@ -780,6 +781,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Fondo
   velocidad: 1.5
   ancho: 2.56
+--- !u!1 &1653177006
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1653177007}
+  m_Layer: 0
+  m_Name: Disparos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1653177007
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1653177006}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1703053706
 GameObject:
   m_ObjectHideFlags: 0
@@ -819,3 +851,4 @@ SceneRoots:
   - {fileID: 106373021}
   - {fileID: 1020597261}
   - {fileID: 1703053707}
+  - {fileID: 1653177007}

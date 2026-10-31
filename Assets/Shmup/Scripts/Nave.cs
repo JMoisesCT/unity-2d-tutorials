@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Pool;
 
 public class Nave : MonoBehaviour
 {
@@ -15,13 +16,15 @@ public class Nave : MonoBehaviour
 
     [Header("Disparo")]
     [Tooltip("El prefab que sale al disparar")]
-    [SerializeField] GameObject laser;
+    [SerializeField] Laser laser;
     [Tooltip("De dónde sale: la punta de la nave")]
     [SerializeField] Transform canon;
     [Tooltip("Segundos entre un disparo y el siguiente")]
     [SerializeField] float cadencia = 0.2f;
     [Tooltip("El sonido de cada disparo")]
     [SerializeField] AudioClip sonidoLaser;
+    [Tooltip("Dónde se guardan los láseres en la Hierarchy")]
+    [SerializeField] Transform carpeta;
 
     InputAction mover;
     InputAction disparar;
@@ -31,6 +34,8 @@ public class Nave : MonoBehaviour
     Vector2 maximo;
     float siguienteDisparo;
     AudioSource altavoz;
+    int creados;
+    ObjectPool<Laser> cargador;
 
     void Start()
     {
@@ -42,6 +47,15 @@ public class Nave : MonoBehaviour
         minimo = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0));
         maximo = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, 0));
         Debug.Log("Pantalla: de " + minimo + " a " + maximo);
+        cargador = new ObjectPool<Laser>(
+            () =>
+            {
+                creados++;
+                Debug.Log("Láseres creados: " + creados);
+                return Instantiate(laser, carpeta);
+            },
+            l => l.gameObject.SetActive(true),
+            l => l.gameObject.SetActive(false));
     }
 
     void Update()
@@ -49,7 +63,9 @@ public class Nave : MonoBehaviour
         direccion = mover.ReadValue<Vector2>();
         if (disparar.IsPressed() && Time.time >= siguienteDisparo)
         {
-            Instantiate(laser, canon.position, canon.rotation);
+            Laser nuevo = cargador.Get();
+            nuevo.transform.SetPositionAndRotation(canon.position, canon.rotation);
+            nuevo.UsarCargador(cargador);
             siguienteDisparo = Time.time + cadencia;
             altavoz.PlayOneShot(sonidoLaser);
         }
