@@ -22,7 +22,18 @@ public class Torreta : MonoBehaviour
     [Tooltip("Grados que gira la espiral entre bala y bala")]
     [SerializeField] float giroEspiral = 25f;
 
+    [Header("Entrada")]
+    [Tooltip("Hasta qué x avanza antes de disparar")]
+    [SerializeField] float parada = 6f;
+    [Tooltip("Unidades por segundo al entrar")]
+    [SerializeField] float velocidadEntrada = 2f;
+
     ObjectPool<Bala> cargador;
+
+    public void UsarCarpeta(Transform deDonde)
+    {
+        carpeta = deDonde;
+    }
 
     void Start()
     {
@@ -35,6 +46,11 @@ public class Torreta : MonoBehaviour
 
     IEnumerator Atacar()
     {
+        while (transform.position.x > parada)
+        {
+            transform.position += Vector3.left * velocidadEntrada * Time.deltaTime;
+            yield return null;
+        }
         while (true)
         {
             for (int i = 0; i < 3; i++)

@@ -30,6 +30,10 @@ public class Laser : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D otro)
     {
+        if (!gameObject.activeSelf)
+        {
+            return;
+        }
         if (otro.TryGetComponent(out Vida vida))
         {
             vida.RecibirDaño(daño);
