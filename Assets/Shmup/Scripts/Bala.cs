@@ -30,7 +30,7 @@ public class Bala : MonoBehaviour
     {
         if (otro.TryGetComponent(out Nave nave))
         {
-            Debug.Log("¡Una bala roja le dio a la nave!");
+            nave.RecibirGolpe();
             cargador.Release(this);
         }
     }

@@ -25,7 +25,11 @@ MonoBehaviour:
     enemigo: {fileID: 2362678545403981225, guid: 7b2e73e91680ff84f9583f3bc48d3be1, type: 3}
     altura: -2
     recorrido: 0
-  - espera: 2
+  - espera: 1
+    enemigo: {fileID: 1186182063272968648, guid: 8fe66b311367fe141a73b9f289658a72, type: 3}
+    altura: 0
+    recorrido: 0
+  - espera: 1.5
     enemigo: {fileID: 7477719251854242473, guid: 3971b7eb8b9112141acf19c1bcc64c55, type: 3}
     altura: 1
     recorrido: 1
@@ -37,6 +41,10 @@ MonoBehaviour:
     enemigo: {fileID: 7477719251854242473, guid: 3971b7eb8b9112141acf19c1bcc64c55, type: 3}
     altura: 1
     recorrido: 1
+  - espera: 1
+    enemigo: {fileID: 1186182063272968648, guid: 8fe66b311367fe141a73b9f289658a72, type: 3}
+    altura: -1
+    recorrido: 0
   - espera: 2
     enemigo: {fileID: 4093263658601110770, guid: fee5eac2c9f67934886935e8196556ef, type: 3}
     altura: 3
@@ -45,7 +53,11 @@ MonoBehaviour:
     enemigo: {fileID: 4093263658601110770, guid: fee5eac2c9f67934886935e8196556ef, type: 3}
     altura: -2
     recorrido: 0
-  - espera: 3
+  - espera: 1.5
+    enemigo: {fileID: 6044985465385028666, guid: 4e7af1706cec3124682e213a3f732c71, type: 3}
+    altura: 0
+    recorrido: 0
+  - espera: 1.5
     enemigo: {fileID: 4289174313880205040, guid: 009352345dd84b9499c4741117bb7637, type: 3}
     altura: 0
     recorrido: 0
