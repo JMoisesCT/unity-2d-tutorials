@@ -35,12 +35,16 @@ public class Director : MonoBehaviour
             {
                 torreta.UsarCarpeta(disparos);
             }
+            if (nuevo.TryGetComponent(out Jefe jefe))
+            {
+                jefe.UsarCarpeta(disparos);
+            }
         }
         Debug.Log("Oleada: ya salieron todos");
         while (enemigos.childCount > 0)
         {
             yield return null;
         }
-        Debug.Log("¡Oleada superada!");
+        Debug.Log("¡Ganaste! Fin del juego");
     }
 }

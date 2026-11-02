@@ -21,6 +21,11 @@ public class Vida : MonoBehaviour
         vida = vidaMaxima;
     }
 
+    public float Porcentaje()
+    {
+        return (float)vida / vidaMaxima;
+    }
+
     public void RecibirDaño(int daño)
     {
         vida -= daño;

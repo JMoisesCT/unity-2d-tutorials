@@ -61,3 +61,7 @@ MonoBehaviour:
     enemigo: {fileID: 4289174313880205040, guid: 009352345dd84b9499c4741117bb7637, type: 3}
     altura: 0
     recorrido: 0
+  - espera: 6
+    enemigo: {fileID: 965332195640620449, guid: 8b446b1a10855e8429d026e6e5be179a, type: 3}
+    altura: 0
+    recorrido: 0
