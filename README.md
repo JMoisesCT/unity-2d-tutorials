@@ -1,6 +1,6 @@
 # unity-2d-tutorials
 
-Proyecto de Unity que acompaña a una serie de cursos de C# con Unity para personas que empiezan a programar. Los cursos usan la rana ninja de Pixel Adventure 1, salvo Curvas y velocidad y Arrastrar y soltar, que usan el arte de Kenney, Top-down, que usa el de 0x72, y Beat 'em up, que usa el de Ansimuz.
+Proyecto de Unity que acompaña a una serie de cursos de C# con Unity para personas que empiezan a programar. Los cursos usan la rana ninja de Pixel Adventure 1, salvo Curvas y velocidad, Arrastrar y soltar y Shoot 'em up, que usan el arte de Kenney, Top-down, que usa el de 0x72, y Beat 'em up, que usa el de Ansimuz.
 
 Cada curso vive en su propia rama, y cada sesión tiene un tag con el estado exacto del proyecto al terminarla. Sirve para comparar tu proyecto con el del curso o para empezar una sesión desde cero.
 
@@ -19,15 +19,16 @@ Cada curso vive en su propia rama, y cada sesión tiene un tag con el estado exa
 | Beat 'em up 2: golpes y combos (3 sesiones) | `beatemup-2` | `beatemup-2-sesion-01` … `beatemup-2-sesion-03` | `Assets/BeatEmUp/` |
 | Beat 'em up 3: vida (3 sesiones) | `beatemup-3` | `beatemup-3-sesion-01` … `beatemup-3-sesion-03` | `Assets/BeatEmUp/` |
 | Beat 'em up 4: una calle completa (7 sesiones) | `beatemup-4` | `beatemup-4-sesion-01` … `beatemup-4-sesion-07` | `Assets/BeatEmUp/` |
+| Shoot 'em up: naves y balas (9 sesiones) | `shmup-1` | `shmup-1-sesion-01` … `shmup-1-sesion-09` | `Assets/Shmup/` |
 
-El curso de Plataformas 2D parte del final del curso base (`sesion-08`), y Plataformas 2D 2 continúa donde termina Plataformas 2D (`plataformas-1-sesion-08`). Curvas y velocidad, Arrastrar y soltar, Top-down y Beat 'em up también parten de `sesion-08` y no dependen de los otros cursos. Top-down 2 continúa donde termina Top-down (`topdown-1-sesion-09`). Cada Beat 'em up siguiente continúa donde termina el anterior (`beatemup-1-sesion-04`, `beatemup-2-sesion-03` y `beatemup-3-sesion-03`).
+El curso de Plataformas 2D parte del final del curso base (`sesion-08`), y Plataformas 2D 2 continúa donde termina Plataformas 2D (`plataformas-1-sesion-08`). Curvas y velocidad, Arrastrar y soltar, Top-down, Beat 'em up y Shoot 'em up también parten de `sesion-08` y no dependen de los otros cursos. Top-down 2 continúa donde termina Top-down (`topdown-1-sesion-09`). Cada Beat 'em up siguiente continúa donde termina el anterior (`beatemup-1-sesion-04`, `beatemup-2-sesion-03` y `beatemup-3-sesion-03`).
 
 ## Cómo usarlo
 
 1. En GitHub, elige el tag de la sesión que quieres (selector de ramas › **Tags**).
 2. Botón **Code › Download ZIP** y descomprímelo.
 3. En Unity Hub, **Add › Add project from disk** y elige la carpeta.
-4. Abre la escena del curso: `Assets/Game/Scenes/` (curso base) o `Assets/Plataformas/Scenes/Nivel1.unity` (Plataformas 2D; en Plataformas 2D 2, desde la sesión 5, `Menu.unity`) o `Assets/Curvas/Scenes/` (Curvas y velocidad; al final, `NivelAlien.unity` y `NivelCaracol.unity`) o `Assets/Clics/Scenes/Nivel1.unity` (Arrastrar y soltar) o `Assets/TopDown/Scenes/Mazmorra.unity` (Top-down) o `Assets/TopDown/Scenes/Arena.unity` (Top-down 2) o `Assets/BeatEmUp/Scenes/Calle.unity` (Beat 'em up).
+4. Abre la escena del curso: `Assets/Game/Scenes/` (curso base) o `Assets/Plataformas/Scenes/Nivel1.unity` (Plataformas 2D; en Plataformas 2D 2, desde la sesión 5, `Menu.unity`) o `Assets/Curvas/Scenes/` (Curvas y velocidad; al final, `NivelAlien.unity` y `NivelCaracol.unity`) o `Assets/Clics/Scenes/Nivel1.unity` (Arrastrar y soltar) o `Assets/TopDown/Scenes/Mazmorra.unity` (Top-down) o `Assets/TopDown/Scenes/Arena.unity` (Top-down 2) o `Assets/BeatEmUp/Scenes/Calle.unity` (Beat 'em up) o `Assets/Shmup/Scenes/Espacio.unity` (Shoot 'em up).
 
 ## Requisitos
 
@@ -39,3 +40,4 @@ El curso de Plataformas 2D parte del final del curso base (`sesion-08`), y Plata
 - Arte de Curvas y velocidad y de Arrastrar y soltar: Platformer Pack Remastered, de Kenney (kenney.nl, CC0).
 - Arte de Top-down: 16x16 DungeonTileset II, de 0x72 (0x72.itch.io, CC0).
 - Arte de Beat 'em up: Streets of Fight, de Ansimuz (ansimuz.itch.io, CC0).
+- Arte y sonidos de Shoot 'em up: Space Shooter Remastered, de Kenney (kenney.nl, CC0).
