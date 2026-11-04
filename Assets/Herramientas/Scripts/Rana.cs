@@ -55,6 +55,7 @@ public class Rana : MonoBehaviour
         {
             frutas = frutas + 1;
             Debug.Log("Frutas: " + frutas);
+            altavoz.pitch = Random.Range(0.9f, 1.1f);
             altavoz.PlayOneShot(sonidoFruta);
             Destroy(otro.gameObject);
         }
