@@ -1,15 +1,18 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BarraFrutas : MonoBehaviour
 {
-    [Header("Relleno")]
-    [Tooltip("La caja que crece dentro de la barra.")]
-    [SerializeField] RectTransform relleno;
-    [Tooltip("Cuánto crece por cada fruta, en píxeles del Canvas.")]
-    [SerializeField] float anchoPorFruta = 100f;
+    [Header("Imágenes que se llenan")]
+    [Tooltip("La imagen Filled que se llena con las frutas.")]
+    [SerializeField] Image relleno;
+    [Tooltip("La estrella que se llena en círculo.")]
+    [SerializeField] Image estrella;
 
-    public void Mostrar(int frutas)
+    public void Mostrar(int frutas, int total)
     {
-        relleno.sizeDelta = new Vector2(frutas * anchoPorFruta, relleno.sizeDelta.y);
+        float parte = (float)frutas / total;
+        relleno.fillAmount = parte;
+        estrella.fillAmount = parte;
     }
 }

@@ -21,7 +21,7 @@ public class Rana : MonoBehaviour
         mover = InputSystem.actions.FindAction("Move");
         dibujo = GetComponent<SpriteRenderer>();
         animador = GetComponent<Animator>();
-        barra.Mostrar(frutas);
+        barra.Mostrar(frutas, frutasTotales);
     }
 
     void Update()
@@ -45,7 +45,7 @@ public class Rana : MonoBehaviour
         if (otro.CompareTag("Fruta"))
         {
             frutas = frutas + 1;
-            barra.Mostrar(frutas);
+            barra.Mostrar(frutas, frutasTotales);
             if (frutas == frutasTotales)
             {
                 cartel.Mostrar();
