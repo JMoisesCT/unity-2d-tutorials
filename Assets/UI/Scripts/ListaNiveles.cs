@@ -24,6 +24,11 @@ public class ListaNiveles : MonoBehaviour
     [SerializeField] TMP_Text titulo;
     [Tooltip("El botón que empieza el nivel.")]
     [SerializeField] Button jugar;
+    [Tooltip("La etiqueta que rebota al elegir.")]
+    [SerializeField] Aparecer etiqueta;
+    [Header("Aparición")]
+    [Tooltip("Segundos entre una fila y la siguiente.")]
+    [SerializeField] float pausa = 0.08f;
 
     int elegido;
 
@@ -40,6 +45,7 @@ public class ListaNiveles : MonoBehaviour
             boton.interactable = abierto;
             int este = numero;
             boton.onClick.AddListener(() => Elegir(este));
+            nueva.GetComponent<Aparecer>().Mostrar(numero * pausa);
             abierto = nivel.estrellas > 0;
             numero = numero + 1;
         }
@@ -50,6 +56,7 @@ public class ListaNiveles : MonoBehaviour
         elegido = cual;
         titulo.text = niveles[cual - 1].nombre;
         jugar.interactable = true;
+        etiqueta.Mostrar(0f);
     }
 
     void Jugar()

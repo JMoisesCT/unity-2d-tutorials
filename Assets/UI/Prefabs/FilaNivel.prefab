@@ -174,6 +174,8 @@ GameObject:
   - component: {fileID: 2167819950306246553}
   - component: {fileID: 8452378997818347719}
   - component: {fileID: 7472691768929758444}
+  - component: {fileID: 3919004927768422301}
+  - component: {fileID: 1828055949438253228}
   m_Layer: 5
   m_Name: FilaNivel
   m_TagString: Untagged
@@ -344,6 +346,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BotonVivo
   crecer: 1.05
+  duracion: 0.15
+  curvas: {fileID: 11400000, guid: a59e91503a9ace048a8f4710345b43c1, type: 2}
+  duracionRebote: 0.5
   sonidoEncima: {fileID: 8300000, guid: a46a2a5d26408584fbcc84c6d07970de, type: 3}
   sonidoClic: {fileID: 8300000, guid: 6eae639012b08cb44a566d17345a4ce5, type: 3}
 --- !u!82 &7472691768929758444
@@ -443,6 +448,32 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3919004927768422301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1276216273876497606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 807b55808c5038a45985057aa0f78835, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimarEscala
+--- !u!114 &1828055949438253228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1276216273876497606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e63672b84b2c6314f80fa2ee1ae1733c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Aparecer
+  duracion: 0.4
+  curvas: {fileID: 11400000, guid: a59e91503a9ace048a8f4710345b43c1, type: 2}
 --- !u!1 &1708110649902502363
 GameObject:
   m_ObjectHideFlags: 0
