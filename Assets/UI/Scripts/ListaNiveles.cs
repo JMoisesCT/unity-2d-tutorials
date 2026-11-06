@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -29,8 +30,21 @@ public class ListaNiveles : MonoBehaviour
     [Header("Aparición")]
     [Tooltip("Segundos entre una fila y la siguiente.")]
     [SerializeField] float pausa = 0.08f;
+    [Tooltip("La ventana de esta lista.")]
+    [SerializeField] Ventana ventana;
 
     int elegido;
+    List<Aparecer> filas = new List<Aparecer>();
+
+    void OnEnable()
+    {
+        ventana.AlAbrir += Entrar;
+    }
+
+    void OnDisable()
+    {
+        ventana.AlAbrir -= Entrar;
+    }
 
     void Start()
     {
@@ -45,9 +59,19 @@ public class ListaNiveles : MonoBehaviour
             boton.interactable = abierto;
             int este = numero;
             boton.onClick.AddListener(() => Elegir(este));
-            nueva.GetComponent<Aparecer>().Mostrar(numero * pausa);
+            filas.Add(nueva.GetComponent<Aparecer>());
             abierto = nivel.estrellas > 0;
             numero = numero + 1;
+        }
+    }
+
+    void Entrar()
+    {
+        float espera = pausa;
+        foreach (Aparecer fila in filas)
+        {
+            fila.Mostrar(espera);
+            espera = espera + pausa;
         }
     }
 
@@ -62,5 +86,6 @@ public class ListaNiveles : MonoBehaviour
     void Jugar()
     {
         Debug.Log("A jugar el nivel " + elegido);
+        Fundido.actual.Ir("Juego");
     }
 }

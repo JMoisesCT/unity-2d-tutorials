@@ -1,8 +1,11 @@
+using System;
 using UnityEngine;
 
 public class Ventana : MonoBehaviour
 {
     Animator animador;
+
+    public event Action AlAbrir;
 
     void Awake()
     {
@@ -12,6 +15,7 @@ public class Ventana : MonoBehaviour
     public void Abrir()
     {
         animador.SetBool("Abierta", true);
+        AlAbrir?.Invoke();
     }
 
     public void Cerrar()
