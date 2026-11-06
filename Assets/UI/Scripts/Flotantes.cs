@@ -19,6 +19,10 @@ public class Flotantes : MonoBehaviour
 
     void Crear(Vector3 lugar, int ganados)
     {
+        if (PlayerPrefs.GetInt(Claves.Puntos, 1) == 0)
+        {
+            return;
+        }
         PuntoFlotante nuevo = Instantiate(punto, transform);
         nuevo.transform.position = Camera.main.WorldToScreenPoint(lugar);
         nuevo.Mostrar(ganados);
