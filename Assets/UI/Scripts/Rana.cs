@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,25 +10,26 @@ public class Rana : MonoBehaviour
     [SerializeField] BarraFrutas barra;
     [Tooltip("El cartel que aparece al juntarlas todas.")]
     [SerializeField] Cartel cartel;
-    [Tooltip("El marcador de puntos del HUD.")]
-    [SerializeField] Puntos marcador;
     [Tooltip("Cuántas frutas hay en el nivel.")]
     [SerializeField] int frutasTotales = 5;
     [Tooltip("Cuántos puntos vale cada fruta.")]
     [SerializeField] int puntosPorFruta = 100;
     int frutas = 0;
-    int puntos = 0;
+
+    public event Action<Vector3, int> FrutaJuntada;
+
     InputAction mover;
     SpriteRenderer dibujo;
     Animator animador;
+    Vida vida;
 
     void Start()
     {
         mover = InputSystem.actions.FindAction("Move");
         dibujo = GetComponent<SpriteRenderer>();
         animador = GetComponent<Animator>();
+        vida = GetComponent<Vida>();
         barra.Mostrar(frutas, frutasTotales);
-        marcador.Mostrar(puntos);
     }
 
     void Update()
@@ -51,14 +53,17 @@ public class Rana : MonoBehaviour
         if (otro.CompareTag("Fruta"))
         {
             frutas = frutas + 1;
-            puntos = puntos + puntosPorFruta;
             barra.Mostrar(frutas, frutasTotales);
-            marcador.Mostrar(puntos);
+            FrutaJuntada?.Invoke(otro.transform.position, puntosPorFruta);
             if (frutas == frutasTotales)
             {
                 cartel.Mostrar(Time.timeSinceLevelLoad);
             }
             Destroy(otro.gameObject);
+        }
+        else if (otro.CompareTag("Trampa"))
+        {
+            vida.RecibirDaño(1);
         }
     }
 }
