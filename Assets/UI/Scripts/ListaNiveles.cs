@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 [System.Serializable]
@@ -67,6 +68,7 @@ public class ListaNiveles : MonoBehaviour
 
     void Entrar()
     {
+        EventSystem.current.SetSelectedGameObject(filas[0].gameObject);
         float espera = pausa;
         foreach (Aparecer fila in filas)
         {
@@ -81,6 +83,7 @@ public class ListaNiveles : MonoBehaviour
         titulo.text = niveles[cual - 1].nombre;
         jugar.interactable = true;
         etiqueta.Mostrar(0f);
+        EventSystem.current.SetSelectedGameObject(jugar.gameObject);
     }
 
     void Jugar()

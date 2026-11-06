@@ -2,9 +2,9 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class BotonVivo : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class BotonVivo : MonoBehaviour, IPointerEnterHandler, ISelectHandler, IDeselectHandler
 {
-    [Header("Al pasar el mouse")]
+    [Header("Al recibir el foco")]
     [Tooltip("Cuánto crece: 1 es su tamaño normal.")]
     [SerializeField] float crecer = 1.05f;
     [Tooltip("Cuántos segundos tarda en crecer.")]
@@ -14,7 +14,7 @@ public class BotonVivo : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     [Tooltip("Cuántos segundos dura el rebote al pulsar.")]
     [SerializeField] float duracionRebote = 0.5f;
     [Header("Sonidos")]
-    [Tooltip("Suena cuando el mouse entra.")]
+    [Tooltip("Suena al recibir el foco.")]
     [SerializeField] AudioClip sonidoEncima;
     [Tooltip("Suena al pulsar.")]
     [SerializeField] AudioClip sonidoClic;
@@ -33,15 +33,19 @@ public class BotonVivo : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     public void OnPointerEnter(PointerEventData datos)
     {
-        if (!boton.IsInteractable())
+        if (boton.IsInteractable())
         {
-            return;
+            boton.Select();
         }
+    }
+
+    public void OnSelect(BaseEventData datos)
+    {
         escala.Ir(crecer, duracion, curvas.suave);
         fuente.PlayOneShot(sonidoEncima);
     }
 
-    public void OnPointerExit(PointerEventData datos)
+    public void OnDeselect(BaseEventData datos)
     {
         escala.Ir(1f, duracion, curvas.suave);
     }

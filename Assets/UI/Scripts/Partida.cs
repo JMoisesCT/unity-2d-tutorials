@@ -22,6 +22,12 @@ public class Partida : MonoBehaviour
 
     Estado estado = Estado.Jugando;
     bool sinGolpes = true;
+    InputAction atras;
+
+    void Start()
+    {
+        atras = InputSystem.actions.FindAction("UI/Cancel");
+    }
 
     void OnEnable()
     {
@@ -37,7 +43,7 @@ public class Partida : MonoBehaviour
 
     void Update()
     {
-        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        if (atras.WasPressedThisFrame())
         {
             if (estado == Estado.Jugando)
             {
