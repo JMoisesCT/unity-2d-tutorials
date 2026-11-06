@@ -26,7 +26,7 @@ public class PuntoFlotante : MonoBehaviour
         float tiempo = 0f;
         while (tiempo < duracion)
         {
-            tiempo += Time.deltaTime;
+            tiempo += Time.unscaledDeltaTime;
             float parte = tiempo / duracion;
             caja.anchoredPosition = inicio + Vector2.up * subida * curvas.suave.Evaluate(parte);
             texto.alpha = 1f - parte;

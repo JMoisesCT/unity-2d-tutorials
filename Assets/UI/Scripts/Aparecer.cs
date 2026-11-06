@@ -23,7 +23,7 @@ public class Aparecer : MonoBehaviour
     IEnumerator Esperar(float espera)
     {
         transform.localScale = Vector3.zero;
-        yield return new WaitForSeconds(espera);
+        yield return new WaitForSecondsRealtime(espera);
         escala.Ir(1f, duracion, curvas.rebote);
     }
 }

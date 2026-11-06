@@ -54,7 +54,7 @@ public class Puntos : MonoBehaviour
         float tiempo = 0f;
         while (tiempo < duracion)
         {
-            tiempo += Time.deltaTime;
+            tiempo += Time.unscaledDeltaTime;
             mostrado = Mathf.RoundToInt(Mathf.Lerp(inicio, total, tiempo / duracion));
             texto.text = mostrado.ToString("00000");
             yield return null;

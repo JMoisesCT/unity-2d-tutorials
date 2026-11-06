@@ -8,8 +8,6 @@ public class Rana : MonoBehaviour
     [Header("Interfaz")]
     [Tooltip("La barra del HUD que muestra las frutas.")]
     [SerializeField] BarraFrutas barra;
-    [Tooltip("El cartel que aparece al juntarlas todas.")]
-    [SerializeField] Cartel cartel;
     [Tooltip("Cuántas frutas hay en el nivel.")]
     [SerializeField] int frutasTotales = 5;
     [Tooltip("Cuántos puntos vale cada fruta.")]
@@ -17,6 +15,7 @@ public class Rana : MonoBehaviour
     int frutas = 0;
 
     public event Action<Vector3, int> FrutaJuntada;
+    public event Action TodasJuntadas;
 
     InputAction mover;
     SpriteRenderer dibujo;
@@ -34,6 +33,11 @@ public class Rana : MonoBehaviour
 
     void Update()
     {
+        if (Time.timeScale == 0f)
+        {
+            return;
+        }
+
         Vector2 direccion = mover.ReadValue<Vector2>();
         transform.Translate(direccion * velocidad * Time.deltaTime);
 
@@ -57,7 +61,7 @@ public class Rana : MonoBehaviour
             FrutaJuntada?.Invoke(otro.transform.position, puntosPorFruta);
             if (frutas == frutasTotales)
             {
-                cartel.Mostrar(Time.timeSinceLevelLoad);
+                TodasJuntadas?.Invoke();
             }
             Destroy(otro.gameObject);
         }

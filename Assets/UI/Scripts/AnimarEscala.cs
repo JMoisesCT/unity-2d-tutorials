@@ -21,7 +21,7 @@ public class AnimarEscala : MonoBehaviour
         float tiempo = 0f;
         while (tiempo < segundos)
         {
-            tiempo += Time.deltaTime;
+            tiempo += Time.unscaledDeltaTime;
             transform.localScale = Vector3.LerpUnclamped(inicio, fin, forma.Evaluate(tiempo / segundos));
             yield return null;
         }

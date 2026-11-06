@@ -43,12 +43,12 @@ public class BarraVida : MonoBehaviour
 
     IEnumerator Alcanzar(float destino)
     {
-        yield return new WaitForSeconds(espera);
+        yield return new WaitForSecondsRealtime(espera);
         float inicio = estela.fillAmount;
         float tiempo = 0f;
         while (tiempo < duracion)
         {
-            tiempo += Time.deltaTime;
+            tiempo += Time.unscaledDeltaTime;
             float parte = curvas.suave.Evaluate(tiempo / duracion);
             estela.fillAmount = Mathf.Lerp(inicio, destino, parte);
             yield return null;

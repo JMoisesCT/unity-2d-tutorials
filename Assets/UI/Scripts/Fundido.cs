@@ -33,6 +33,7 @@ public class Fundido : MonoBehaviour
     {
         grupo.blocksRaycasts = true;
         yield return Fundir(0f, 1f);
+        Time.timeScale = 1f;
         SceneManager.LoadScene(escena);
         yield return null;
         yield return Fundir(1f, 0f);
@@ -44,7 +45,7 @@ public class Fundido : MonoBehaviour
         float tiempo = 0f;
         while (tiempo < duracion)
         {
-            tiempo += Time.deltaTime;
+            tiempo += Time.unscaledDeltaTime;
             float parte = curvas.suave.Evaluate(tiempo / duracion);
             grupo.alpha = Mathf.Lerp(desde, hasta, parte);
             yield return null;
