@@ -14,4 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Dialogo
   lineas:
   - quien: {fileID: 11400000, guid: aee075a1346b8b542baf42fec6a9206c, type: 2}
-    texto: "Shh\u2026 ni una palabra m\xE1s."
+    texto: "\xBFVienes a intentarlo otra vez?"
+  opciones:
+  - texto: "Preg\xFAntame"
+    siguiente: {fileID: 11400000, guid: 0c14140107c20634397cb6316c09a3fe, type: 2}
+  - texto: Mejor me voy
+    siguiente: {fileID: 11400000, guid: 78fcac034d16f4f4d90de00d04338327, type: 2}

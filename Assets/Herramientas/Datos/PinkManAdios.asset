@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8c8a6f8aca7d6d41a2d71ecc9da860f, type: 3}
+  m_Name: PinkManAdios
+  m_EditorClassIdentifier: Assembly-CSharp::Dialogo
+  lineas:
+  - quien: {fileID: 11400000, guid: e64aada5d30ef6e41ba2491a9e2b5f25, type: 2}
+    texto: "Mejor vuelvo otro d\xEDa."
+  - quien: {fileID: 11400000, guid: aee075a1346b8b542baf42fec6a9206c, type: 2}
+    texto: "Aqu\xED estar\xE9, cuidando el trofeo."
+  opciones: []

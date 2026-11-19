@@ -14,8 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Dialogo
   lineas:
   - quien: {fileID: 11400000, guid: aee075a1346b8b542baf42fec6a9206c, type: 2}
-    texto: "\xA1Psst! \xBFT\xFA tambi\xE9n vas por las frutas que brillan?"
+    texto: "\xA1Alto ah\xED! Nadie pasa sin responder mi pregunta."
   - quien: {fileID: 11400000, guid: e64aada5d30ef6e41ba2491a9e2b5f25, type: 2}
-    texto: "\xBFC\xF3mo lo sabes?"
+    texto: "\xBFY qu\xE9 hay detr\xE1s de las cajas?"
   - quien: {fileID: 11400000, guid: aee075a1346b8b542baf42fec6a9206c, type: 2}
-    texto: Todo el mundo habla de eso. Mask Dude no sabe guardar secretos.
+    texto: "Un trofeo. \xBFTe animas?"
+  opciones:
+  - texto: "Preg\xFAntame"
+    siguiente: {fileID: 11400000, guid: 0c14140107c20634397cb6316c09a3fe, type: 2}
+  - texto: Mejor me voy
+    siguiente: {fileID: 11400000, guid: 78fcac034d16f4f4d90de00d04338327, type: 2}

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class Charla : MonoBehaviour
@@ -8,6 +9,11 @@ public class Charla : MonoBehaviour
     [SerializeField] Dialogo primera;
     [Tooltip("Lo que dice si le vuelves a hablar")]
     [SerializeField] Dialogo otraVez;
+
+    [Header("Al terminar")]
+    [Tooltip("Si la charla termina en este diálogo, pasa lo de abajo")]
+    [SerializeField] Dialogo final;
+    [SerializeField] UnityEvent alTerminar;
 
     [Header("Piezas de la escena")]
     [Tooltip("El globo con el «!» que aparece cuando la rana está cerca")]
@@ -36,13 +42,21 @@ public class Charla : MonoBehaviour
             }
             else if (yaHablaron)
             {
-                caja.Empezar(otraVez);
+                caja.Empezar(otraVez, this);
             }
             else
             {
-                caja.Empezar(primera);
+                caja.Empezar(primera, this);
                 yaHablaron = true;
             }
+        }
+    }
+
+    public void Termino(Dialogo ultimo)
+    {
+        if (ultimo == final)
+        {
+            alTerminar.Invoke();
         }
     }
 
