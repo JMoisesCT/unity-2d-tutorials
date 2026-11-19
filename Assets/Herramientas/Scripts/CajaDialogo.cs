@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class CajaDialogo : MonoBehaviour
@@ -8,6 +9,8 @@ public class CajaDialogo : MonoBehaviour
     [SerializeField] GameObject caja;
     [SerializeField] TMP_Text nombre;
     [SerializeField] TMP_Text frase;
+    [SerializeField] Image etiqueta;
+    [SerializeField] Image retrato;
 
     [Header("Máquina de escribir")]
     [Tooltip("Segundos entre una letra y la siguiente")]
@@ -17,7 +20,7 @@ public class CajaDialogo : MonoBehaviour
     [Tooltip("Sonido que suena con cada letra")]
     [SerializeField] AudioClip voz;
 
-    string[] frases;
+    Dialogo dialogo;
     int indice;
     Coroutine escribiendo;
     AudioSource altavoz;
@@ -33,13 +36,12 @@ public class CajaDialogo : MonoBehaviour
         return caja.activeSelf;
     }
 
-    public void Empezar(string quien, string[] lista)
+    public void Empezar(Dialogo nuevo)
     {
-        frases = lista;
+        dialogo = nuevo;
         indice = 0;
-        nombre.text = quien;
         caja.SetActive(true);
-        escribiendo = StartCoroutine(Escribir(frases[indice]));
+        Mostrar();
     }
 
     public void Siguiente()
@@ -48,14 +50,14 @@ public class CajaDialogo : MonoBehaviour
         {
             StopCoroutine(escribiendo);
             escribiendo = null;
-            frase.maxVisibleCharacters = frases[indice].Length;
+            frase.maxVisibleCharacters = dialogo.lineas[indice].texto.Length;
             return;
         }
 
         indice = indice + 1;
-        if (indice < frases.Length)
+        if (indice < dialogo.lineas.Length)
         {
-            escribiendo = StartCoroutine(Escribir(frases[indice]));
+            Mostrar();
         }
         else
         {
@@ -63,7 +65,16 @@ public class CajaDialogo : MonoBehaviour
         }
     }
 
-    IEnumerator Escribir(string texto)
+    void Mostrar()
+    {
+        Linea linea = dialogo.lineas[indice];
+        nombre.text = linea.quien.nombre;
+        etiqueta.color = linea.quien.color;
+        retrato.sprite = linea.quien.retrato;
+        escribiendo = StartCoroutine(Escribir(linea.texto, linea.quien.tono));
+    }
+
+    IEnumerator Escribir(string texto, float tono)
     {
         frase.text = texto;
         frase.maxVisibleCharacters = 0;
@@ -73,7 +84,7 @@ public class CajaDialogo : MonoBehaviour
             frase.maxVisibleCharacters = i;
             if (texto[i - 1] != ' ')
             {
-                altavoz.pitch = Random.Range(0.9f, 1.1f);
+                altavoz.pitch = tono * Random.Range(0.9f, 1.1f);
                 altavoz.PlayOneShot(voz);
             }
         }

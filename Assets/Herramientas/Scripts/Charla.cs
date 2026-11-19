@@ -4,9 +4,10 @@ using UnityEngine.InputSystem;
 public class Charla : MonoBehaviour
 {
     [Header("Lo que dice")]
-    [SerializeField] string nombre = "Mask Dude";
-    [TextArea(2, 3)]
-    [SerializeField] string[] frases;
+    [Tooltip("La charla de la primera vez")]
+    [SerializeField] Dialogo primera;
+    [Tooltip("Lo que dice si le vuelves a hablar")]
+    [SerializeField] Dialogo otraVez;
 
     [Header("Piezas de la escena")]
     [Tooltip("El globo con el «!» que aparece cuando la rana está cerca")]
@@ -15,6 +16,7 @@ public class Charla : MonoBehaviour
 
     InputAction hablar;
     bool cerca = false;
+    bool yaHablaron = false;
 
     void Start()
     {
@@ -32,9 +34,14 @@ public class Charla : MonoBehaviour
             {
                 caja.Siguiente();
             }
+            else if (yaHablaron)
+            {
+                caja.Empezar(otraVez);
+            }
             else
             {
-                caja.Empezar(nombre, frases);
+                caja.Empezar(primera);
+                yaHablaron = true;
             }
         }
     }
